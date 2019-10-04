@@ -1,0 +1,25 @@
+{
+  "name": "mawbot2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlipperLP/mawbot2.git"
+  },
+  "keywords": [],
+  "author": "Phil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlipperLP/mawbot2/issues"
+  },
+  "homepage": "https://github.com/FlipperLP/mawbot2#readme",
+  "devDependencies": {
+    "eslint": "^6.5.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
