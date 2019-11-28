@@ -23,6 +23,8 @@
     "eslint-plugin-import": "^2.18.2"
   },
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.19.2"
   }
 }
