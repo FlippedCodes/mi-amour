@@ -18,11 +18,17 @@
   },
   "homepage": "https://github.com/FlipperLP/mawbot2#readme",
   "devDependencies": {
+<<<<<<< HEAD
     "eslint": "^6.7.1",
+=======
+    "eslint": "^6.5.1",
+>>>>>>> cd60f2a7bc1f955fc4e8627a047279de08d78704
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2"
   },
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.19.2"
   }
 }
