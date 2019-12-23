@@ -13,5 +13,5 @@ RUN npm ci --only=production
 # Bundle app source
 COPY . .
 
-# start up the bot
+# start up app
 CMD [ "npm", "start" ]
