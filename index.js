@@ -1,12 +1,12 @@
-// init Discord
+
 const Discord = require('discord.js');
-// init Discord client
+
 const client = new Discord.Client({ disableEveryone: true });
-// init sequelize
+
 const sequelize = require('sequelize');
-// init filesystem
+
 const fs = require('fs');
-// init config
+
 const config = require('./config/main.json');
 
 // create new collections in client and config
@@ -33,18 +33,6 @@ client.on('ready', async () => {
   config.setup.setupFunctions.forEach((FCN) => {
     client.functions.get(FCN).run(client, config);
   });
-});
-
-client.on('guildBanAdd', async (guild, user) => {
-  if (await client.functions.get('FUNC_checkServer').run(guild.id)) {
-    client.functions.get('EVENT_guildBanAdd').run(guild, user);
-  }
-});
-
-client.on('guildBanRemove', async (guild, user) => {
-  if (await client.functions.get('FUNC_checkServer').run(guild.id)) {
-    client.functions.get('EVENT_guildBanRemove').run(guild, user);
-  }
 });
 
 client.on('guildMemberAdd', async (member) => {
