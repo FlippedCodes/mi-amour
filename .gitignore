@@ -1,2 +1,5 @@
-node_modules
+/node_modules
+.eslintrc.json
+test_token.json
 config/config.json
+config_live/
