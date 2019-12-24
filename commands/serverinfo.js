@@ -1,5 +1,7 @@
 const { RichEmbed } = require('discord.js');
 
+// TODO: rewrite
+
 module.exports.run = async (client, message, args, con, config) => {
   let pic = 'https://pbs.twimg.com/profile_images/715852271389655041/s-VdeDI5_400x400.jpg';
   if (message.guild.iconURL) pic = message.guild.iconURL;
