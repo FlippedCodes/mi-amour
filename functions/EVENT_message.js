@@ -6,9 +6,6 @@ module.exports.run = async (client, message, config) => {
   // checking if staffmember
   // TODO: foreach, with more roles
   if (message.member.roles.find((role) => role.id === config.teamRole)) config.env.set('isTeam', true);
-  // put needed user permission-IDs into DB
-  // with permissions on what CMDs
-  // TODO: Permission System
 
   // put comamnd in array
   let messageArray = message.content.split(/\s+/g);
