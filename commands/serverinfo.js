@@ -6,14 +6,6 @@ module.exports.run = async (client, message, args, con, config) => {
   let pic = 'https://pbs.twimg.com/profile_images/715852271389655041/s-VdeDI5_400x400.jpg';
   if (message.guild.iconURL) pic = message.guild.iconURL;
 
-  message.guild.fetchMember(userID)
-    .then((member) => {
-      let embed = new RichEmbed()
-        .setColor(member.displayColor)
-        .setImage(member.user.avatarURL);
-      message.channel.send({ embed });
-    });
-
   const embed = {
     color: message.member.displayColor,
     timestamp: new Date(),
