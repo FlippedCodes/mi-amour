@@ -9,7 +9,7 @@ module.exports.run = async (client, fs, config) => {
     config.env.set('token', token);
   } else {
     config.env.set('inDev', false);
-    config.env.set('token', process.env.BotTokenAgentBlack);
+    config.env.set('token', process.env.BotToken);
   }
   console.log(`[${module.exports.help.name}] Environment variables set!`);
 };

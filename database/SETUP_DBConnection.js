@@ -16,9 +16,9 @@ if (config.env.get('inDev')) {
   password = DBCredentials.password;
   host = DBCredentials.host;
 } else {
-  database = process.env.DBNameAgentBlack;
-  user = process.env.DBNameAgentBlack;
-  password = process.env.DBPasswAgentBlack;
+  database = process.env.DBName;
+  user = process.env.DBName;
+  password = process.env.DBPassw;
   host = process.env.DBHost;
 }
 const sequelize = new Sequelize(

@@ -10,9 +10,9 @@ let tokenAPI;
 
 if (fs.existsSync('./config/config.json')) {
   const api = require('../config/config.json');
-  tokenAPI = api.token;
+  tokenAPI = api.APItoken;
 } else {
-  tokenAPI = process.env.BotTokenAgentBlack;
+  tokenAPI = process.env.APItoken;
 }
 
 // TODO: make function out of command (more accessable from other commands)
