@@ -18,7 +18,6 @@ module.exports.run = async (client, message, config) => {
   // check if server is on ParticipatingServers Table
   let serverID = null;
   if (message.channel.guild) serverID = message.channel.guild.id;
-  if (!await client.functions.get('FUNC_checkServer').run(serverID)) return;
 
   // remove prefix and lowercase
   let cmd = client.commands.get(command.slice(config.prefix.length).toLowerCase());
