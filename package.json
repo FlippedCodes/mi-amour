@@ -22,6 +22,8 @@
     "handlebars": "^4.5.3",
     "mysql2": "^2.0.2",
     "pretty-ms": "^5.1.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
     "sequelize": "^5.21.3"
   },
   "devDependencies": {
