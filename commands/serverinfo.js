@@ -3,89 +3,30 @@ const { RichEmbed } = require('discord.js');
 // TODO: rewrite
 
 module.exports.run = async (client, message, args, con, config) => {
+  let server = message.guild;
   let pic = 'https://pbs.twimg.com/profile_images/715852271389655041/s-VdeDI5_400x400.jpg';
-  if (message.guild.iconURL) pic = message.guild.iconURL;
+  if (server.iconURL) pic = server.iconURL;
 
-  const embed = {
-    color: message.member.displayColor,
-    timestamp: new Date(),
-    author: {
-      name: message.guild.name,
-    },
-    footer: {
-      icon_url: message.client.user.displayAvatarURL,
-      text: message.client.user.tag,
-    },
-    fields: [
-      {
-        name: 'Server created on',
-        value: `${message.guild.createdAt.toLocaleDateString()} ${message.guild.createdAt.toLocaleTimeString()}`,
-        inline: true,
-      },
-      {
-        name: 'Acronym',
-        value: message.guild.nameAcronym,
-        inline: true,
-      },
-      {
-        name: 'Name',
-        value: message.guild.name,
-        inline: true,
-      },
-      {
-        name: 'Owner',
-        value: message.guild.owner.user.tag,
-        inline: true,
-      },
-      {
-        name: 'ID',
-        value: message.guild.id,
-        inline: true,
-      },
-      {
-        name: 'Channels',
-        value: message.guild.channels.size,
-        inline: true,
-      },
-      {
-        name: 'Emojis',
-        value: message.guild.emojis.size,
-        inline: true,
-      },
-      {
-        name: 'Membercount',
-        value: message.guild.memberCount,
-        inline: true,
-      },
-      {
-        name: 'Member online',
-        value: message.guild.presences.size,
-        inline: true,
-      },
-      {
-        name: 'Verification level',
-        value: message.guild.verificationLevel,
-        inline: true,
-      },
-      {
-        name: 'Content filter',
-        value: message.guild.explicitContentFilter,
-        inline: true,
-      },
-      {
-        name: 'Region',
-        value: message.guild.region,
-        inline: true,
-      },
-      {
-        name: 'Server Icon',
-        value: pic,
-      },
-    ],
-    image: {
-      url: pic,
-    },
-  };
+  let embed = new RichEmbed()
+    .setTimestamp()
+    .setAuthor(server.name)
+    .setColor(message.member.displayColor)
+    .setFooter(message.client.user.tag, message.client.user.displayAvatarURL)
+    .setImage(pic)
+    .addField(
+      'Server created on',
+      `${server.createdAt.toLocaleDateString()} ${server.createdAt.toLocaleTimeString()}`, true,
+    )
+    .addField('Acronym', server.nameAcronym, true)
+    .addField('Name', server.name, true)
+    .addField('Owner', server.owner.user.tag, true)
+    .addField('ID', server.id, true)
+    .addField('Channels', server.channels.size, true)
+    .addField('Emojis', server.emojis.size, true)
+    .addField('Membercount', server.memberCount, true)
+    .addField('Verification level', server.verificationLevel, true)
+    .addField('Content filter', server.explicitContentFilter, true)
+    .addField('VC Region', server.region, true);
 
   message.channel.send({ embed });
 };
