@@ -1,5 +1,7 @@
 const { RichEmbed } = require('discord.js');
 
+// TODO: use API if user doesnt share server
+
 // creates a embed messagetemplate for failed actions
 function messageFail(client, message, body) {
   client.functions.get('FUNC_richEmbedMessage')
