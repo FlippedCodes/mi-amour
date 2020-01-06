@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "MawTwo",
+            "name": "GurgleBot",
             "program": "${workspaceFolder}/index.js"
         }
     ]

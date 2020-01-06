@@ -1,5 +1,5 @@
 {
-  "name": "mawtwo",
+  "name": "gurglebot",
   "version": "1.0.0",
   "description": "Rewrite of the orginal mawbot for the TDM-Network.",
   "main": "index.js",
