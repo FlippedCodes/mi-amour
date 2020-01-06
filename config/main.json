@@ -1,6 +1,6 @@
 {
     "name": "GurgleBot",
-    "prefix": "g!",
+    "prefix": "g?",
     "setup": {
         "moduleFolders": {
             "functionsFolder": "functions",
