@@ -27,6 +27,11 @@ require('./database/SETUP_DBConnection');
 // Login the bot
 client.login(config.env.get('token'));
 
+console.log(lang.command_ping_pong({
+  msgLatency: '13',
+  apiLatency: '24',
+}));
+
 client.on('ready', async () => {
   // confirm user logged in
   console.log(`[${config.name}] Logged in as "${client.user.tag}"!`);
