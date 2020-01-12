@@ -24,9 +24,7 @@ function checkPing(client, message) {
   });
 }
 
-module.exports.run = async (client, message) => {
-  checkPing(client, message);
-};
+module.exports.run = async (client, message) => checkPing(client, message);
 
 module.exports.help = {
   name: 'ping',
