@@ -3,15 +3,15 @@ const { RichEmbed } = require('discord.js');
 // Ping kickoff for bot latency
 function kickoff(client, message) {
   const sendMessage = client.functions.get('FUNC_richEmbedMessage');
-  return sendMessage.run(client.user, message.channel, '📤 Ping...', null, null, false);
+  return sendMessage.run(client.user, message.channel, lang.command_ping_ping(), null, null, false);
 }
 
 // message for data return
 function editedMessage(sentMessage, message) {
-  let api_latency = Math.round(sentMessage.client.ping);
-  let body = `📥 Pong!
-  Latency is \`${sentMessage.createdTimestamp - message.createdTimestamp}\`ms.
-  API Latency is \`${api_latency}\`ms`;
+  let body = lang.command_ping_pong({
+    msgLatency: sentMessage.createdTimestamp - message.createdTimestamp,
+    apiLatency: Math.round(sentMessage.client.ping),
+  });
   return new RichEmbed()
     .setDescription(body)
     .setColor();
