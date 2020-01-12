@@ -1,8 +1,0 @@
-{
-    "command": {
-        "ping": {
-            "ping": "Ping...",
-            "pong": "Pong! Latency is {{msgLatency}}ms. API Latency is {{apiLatency}}ms"
-        }
-    }
-}
