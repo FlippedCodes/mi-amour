@@ -29,8 +29,8 @@ function getCommands(lang) {
   const phraseString = JSON.parse(fileContents);
   const phrases = {};
   // eslint-disable-next-line no-restricted-syntax
-  for (const [phraseName, phraseTemplate] of Object.entries(phraseString.commands)) {
-    phrases[phraseName] = Handlebars.compile(phraseTemplate.template);
+  for (const [phraseName, phraseTemplate] of Object.entries(phraseString)) {
+    phrases[phraseName] = Handlebars.compile(phraseTemplate);
   }
   return phrases;
 }
