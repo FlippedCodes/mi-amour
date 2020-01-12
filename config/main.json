@@ -1,6 +1,7 @@
 {
     "name": "GurgleBot",
     "prefix": "g?",
+    "lang": "en_EN",
     "setup": {
         "moduleFolders": {
             "functionsFolder": "functions",
