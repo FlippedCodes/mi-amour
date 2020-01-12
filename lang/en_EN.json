@@ -1,0 +1,4 @@
+{
+    "command_ping_ping": "Ping...",
+    "command_ping_pong": "Pong! Latency is {{msgLatency}}ms. API Latency is {{apiLatency}}ms"
+}
