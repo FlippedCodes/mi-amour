@@ -18,6 +18,7 @@ function getCommands(lang) {
   const fileContents = fs.readFileSync(lang);
   const phraseString = JSON.parse(fileContents);
   const phrases = {};
+  // handlebars compile phrases
   // eslint-disable-next-line no-restricted-syntax
   for (const [phraseName, phraseTemplate] of Object.entries(phraseString)) {
     phrases[phraseName] = Handlebars.compile(phraseTemplate);
