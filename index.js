@@ -3,11 +3,12 @@ const Discord = require('discord.js');
 
 const client = new Discord.Client({ disableEveryone: true });
 
-const sequelize = require('sequelize');
-
 const fs = require('fs');
 
 const config = require('./config/main.json');
+
+// get language file
+require('./lang/SETUP_langFile');
 
 // create new collections in client and config
 client.functions = new Discord.Collection();
