@@ -17,7 +17,7 @@ function editedMessage(sentMessage, message) {
     .setColor();
 }
 
-// creates a embed messagetemplate for failed actions
+// posts ping message and edits it afterwards
 function checkPing(client, message) {
   kickoff(client, message).then((sentMessage) => {
     sentMessage.edit(editedMessage(sentMessage, message));
