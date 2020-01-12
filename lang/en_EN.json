@@ -1,4 +1,4 @@
 {
     "command_ping_ping": "📤 Ping...",
-    "command_ping_pong": "📥 Pong! \\nLatency is {{msgLatency}}ms. \\nAPI Latency is {{apiLatency}}ms"
+    "command_ping_pong": "📥 Pong! \nLatency is {{msgLatency}}ms. \nAPI Latency is {{apiLatency}}ms"
 }
