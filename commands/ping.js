@@ -28,5 +28,5 @@ module.exports.run = async (client, message) => checkPing(client, message);
 
 module.exports.help = {
   name: 'ping',
-  desc: 'Shows API and bot latencies.',
+  desc: lang.command_ping_desc(),
 };

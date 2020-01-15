@@ -17,21 +17,21 @@ module.exports.run = async (client, message, args, con, config) => {
       'Server created on',
       `${server.createdAt.toLocaleDateString()} ${server.createdAt.toLocaleTimeString()}`, true,
     )
-    .addField('Acronym', server.nameAcronym, true)
-    .addField('Name', server.name, true)
-    .addField('Owner', server.owner.user.tag, true)
-    .addField('ID', server.id, true)
-    .addField('Channels', server.channels.size, true)
-    .addField('Emojis', server.emojis.size, true)
-    .addField('Membercount', server.memberCount, true)
-    .addField('Verification level', server.verificationLevel, true)
-    .addField('Content filter', server.explicitContentFilter, true)
-    .addField('VC Region', server.region, true);
+    .addField(lang.chat_command_serverinfo_embed_Acronym(), server.nameAcronym, true)
+    .addField(lang.chat_command_serverinfo_embed_name(), server.name, true)
+    .addField(lang.chat_command_serverinfo_embed_owner(), server.owner.user.tag, true)
+    .addField(lang.chat_command_serverinfo_embed_ID(), server.id, true)
+    .addField(lang.chat_command_serverinfo_embed_channels(), server.channels.size, true)
+    .addField(lang.chat_command_serverinfo_embed_emojis(), server.emojis.size, true)
+    .addField(lang.chat_command_serverinfo_embed_membercount(), server.memberCount, true)
+    .addField(lang.chat_command_serverinfo_embed_verificationLevel(), server.verificationLevel, true)
+    .addField(lang.chat_command_serverinfo_embed_contentFilter(), server.explicitContentFilter, true)
+    .addField(lang.chat_command_serverinfo_embed_vcRegion(), server.region, true);
 
   message.channel.send({ embed });
 };
 
 module.exports.help = {
   name: 'serverinfo',
-  desc: 'Displays serverinfo from the provided server ID',
+  desc: lang.chat_command_serverinfo_desc(),
 };

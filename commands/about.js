@@ -3,16 +3,16 @@ const fs = require('fs');
 // creates a embed messagetemplate for succeded actions
 function postMessage(client, message, body, error) {
   client.functions.get('FUNC_richEmbedMessage')
-    .run(client.user, message.channel, body, 'About: ', message.member.displayColor, false);
+    .run(client.user, message.channel, body, lang.command_about_embed_title(), message.member.displayColor, false);
 }
 
 // creates a embed messagetemplate for failed text retrieving and posts error message into log
 // TODO: put in own errorhandler
 // TODO: make errorlogchannel in server
 function error(client, channel, err) {
-  console.error('ERROR: ', err);
+  console.error(lang.log_global_error_title(), err);
   client.functions.get('FUNC_richEmbedMessage')
-    .run(client.user, channel, 'Oh no! Something went wrong. This error has been carefully recorded and our nerd is working on it to fix it. Please try again later.', '', 16449540, false);
+    .run(client.user, channel, lang.global_error_unkown(), '', 16449540, false);
 }
 
 module.exports.run = async (client, message, args, config) => {
@@ -24,5 +24,5 @@ module.exports.run = async (client, message, args, config) => {
 
 module.exports.help = {
   name: 'about',
-  desc: 'Displays some information about the bot.',
+  desc: lang.command_about_desc(),
 };
