@@ -27,7 +27,7 @@ function getCommands(lang) {
 }
 
 function checkingFile() {
-  log('Checking language file...');
+  log('Checking language file path...');
   // check if file exists
   if (fs.existsSync(file)) {
     log('Language file exists, creating tempalte...');
