@@ -15,12 +15,12 @@ module.exports.run = async (client, message, args, config) => {
 
     message.channel.send(clean(evaled), { code: 'xl' });
   } catch (err) {
-    message.channel.send(lang.command_eval_err_codeFail({ err: clean(err) }))
+    message.channel.send(lang.chat_command_eval_err_codeFail({ err: clean(err) }))
       .then(message.react('❌'));
   }
 };
 
 module.exports.help = {
   name: 'eval',
-  desc: lang.command_eval_desc(),
+  desc: lang.chat_command_eval_desc(),
 };

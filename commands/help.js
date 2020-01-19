@@ -3,12 +3,12 @@ const { RichEmbed } = require('discord.js');
 module.exports.run = async (client, message, args, config) => {
   // prepare title and user CMDs
   let embed = new RichEmbed()
-    .setTitle(lang.command_help_embed_title())
+    .setTitle(lang.chat_command_help_embed_title())
     .setColor(message.member.displayColor)
-    .setDescription(lang.command_help_embed_desc())
+    .setDescription(lang.chat_command_help_embed_desc())
     .addField(
-      lang.command_help_embed_field_title({ prefix: config.prefix }),
-      lang.command_help_embed_field_desc(), true,
+      lang.chat_command_help_embed_field_title({ prefix: config.prefix }),
+      lang.chat_command_help_embed_field_desc(), true,
     );
 
   // set footer
@@ -21,5 +21,5 @@ module.exports.run = async (client, message, args, config) => {
 
 module.exports.help = {
   name: 'help',
-  desc: lang.command_help_desc(),
+  desc: lang.chat_command_help_desc(),
 };

@@ -3,7 +3,7 @@ const fs = require('fs');
 // creates a embed messagetemplate for succeded actions
 function postMessage(client, message, body, error) {
   client.functions.get('FUNC_richEmbedMessage')
-    .run(client.user, message.channel, body, lang.command_about_embed_title(), message.member.displayColor, false);
+    .run(client.user, message.channel, body, lang.chat_command_about_embed_title(), message.member.displayColor, false);
 }
 
 // creates a embed messagetemplate for failed text retrieving and posts error message into log
@@ -12,7 +12,7 @@ function postMessage(client, message, body, error) {
 function error(client, channel, err) {
   console.error(lang.log_global_error_title(), err);
   client.functions.get('FUNC_richEmbedMessage')
-    .run(client.user, channel, lang.global_error_unkown(), '', 16449540, false);
+    .run(client.user, channel, lang.chat_global_error_unkown(), '', 16449540, false);
 }
 
 module.exports.run = async (client, message, args, config) => {
@@ -24,5 +24,5 @@ module.exports.run = async (client, message, args, config) => {
 
 module.exports.help = {
   name: 'about',
-  desc: lang.command_about_desc(),
+  desc: lang.chat_command_about_desc(),
 };

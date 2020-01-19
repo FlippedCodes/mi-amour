@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args, config) => {
 
   let [id] = args;
 
-  if (!id) return message.channel.send(lang.command_lookup_error_missingID());
+  if (!id) return message.channel.send(lang.chat_command_lookup_error_missingID());
 
   let embed = new RichEmbed()
     .setColor(message.member.displayColor)
@@ -41,16 +41,16 @@ module.exports.run = async (client, message, args, config) => {
     .then((user) => {
       let creationDate = (user.id / 4194304) + 1420070400000;
       embed
-        .addField(lang.command_lookup_embed_field_userTag(), `\`${user.username}#${user.discriminator}\``)
-        .addField(lang.command_lookup_embed_field_userID(), `\`${user.id}\``)
-        .addField(lang.command_lookup_embed_field_userCreationDate(), new Date(creationDate), true)
+        .addField(lang.chat_command_lookup_embed_field_userTag(), `\`${user.username}#${user.discriminator}\``)
+        .addField(lang.chat_command_lookup_embed_field_userID(), `\`${user.id}\``)
+        .addField(lang.chat_command_lookup_embed_field_userCreationDate(), new Date(creationDate), true)
         .setThumbnail(`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`);
       message.channel.send({ embed });
     })
     .catch((err) => {
-      if (err.statusCode === 404) embed.setAuthor(lang.command_lookup_error_noUserException());
-      else embed.setAuthor(lang.command_lookup_error_unkownException_message());
-      embed.addField(lang.command_lookup_error_unkownException_stopCode(), err.message);
+      if (err.statusCode === 404) embed.setAuthor(lang.chat_command_lookup_error_noUserException());
+      else embed.setAuthor(lang.chat_command_lookup_error_unkownException_message());
+      embed.addField(lang.chat_command_lookup_error_unkownException_stopCode(), err.message);
       message.channel.send({ embed });
     });
   // joined servers with dates on reaction press, if to many (use .length)
@@ -60,5 +60,5 @@ module.exports.run = async (client, message, args, config) => {
 
 module.exports.help = {
   name: 'lookup',
-  desc: lang.command_lookup_desc(),
+  desc: lang.chat_command_lookup_desc(),
 };

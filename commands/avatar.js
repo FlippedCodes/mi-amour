@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args, config) => {
   if (args[0]) {
     if (message.mentions.members.first() || message.guild.members.get(args[0])) {
       target = message.mentions.members.first() || message.guild.members.get(args[0]);
-    } else { return messageFail(client, message, lang.command_avatar_err_noUser()); }
+    } else { return messageFail(client, message, lang.chat_command_avatar_err_noUser()); }
   } else { target = message.member; }
 
   message.guild.fetchMember(target)
@@ -28,5 +28,5 @@ module.exports.run = async (client, message, args, config) => {
 
 module.exports.help = {
   name: 'avatar',
-  desc: lang.command_avatar_desc(),
+  desc: lang.chat_command_avatar_desc(),
 };
