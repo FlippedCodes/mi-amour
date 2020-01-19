@@ -3,12 +3,12 @@ const { RichEmbed } = require('discord.js');
 // Ping kickoff for bot latency
 function kickoff(client, message) {
   const sendMessage = client.functions.get('FUNC_richEmbedMessage');
-  return sendMessage.run(client.user, message.channel, lang.command_ping_ping(), null, null, false);
+  return sendMessage.run(client.user, message.channel, lang.chat_command_ping_embed_ping(), null, null, false);
 }
 
 // message for data return
 function editedMessage(sentMessage, message) {
-  let body = lang.command_ping_pong({
+  let body = lang.chat_command_ping_embed_pong({
     msgLatency: sentMessage.createdTimestamp - message.createdTimestamp,
     apiLatency: Math.round(sentMessage.client.ping),
   });
@@ -28,5 +28,5 @@ module.exports.run = async (client, message) => checkPing(client, message);
 
 module.exports.help = {
   name: 'ping',
-  desc: lang.command_ping_desc(),
+  desc: lang.chat_command_ping_desc(),
 };
