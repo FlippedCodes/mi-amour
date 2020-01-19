@@ -1,4 +1,5 @@
 module.exports.run = async (message, subcmd) => {
+  // TODO: Needs to be moved to lang-file
   const confusResponses = [
     'You... what, now?',
     'Pardon me?',
