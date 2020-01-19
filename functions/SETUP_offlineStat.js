@@ -7,27 +7,27 @@ const startupTime = +new Date();
 const OfflineStat = require('../database/models/OfflineStat');
 
 const errHander = (err) => {
-  console.error('ERROR:', err);
+  console.error(lang.log_global_error_title(), err);
 };
 
 module.exports.run = async (client, config) => {
   if (!config.env.get('inDev')) {
-    console.log(`[${module.exports.help.name}] Posting bot status message!`);
-  } else return console.log(`[${module.exports.help.name}] Bot is in debugging-mode and will not post bot status message or update the DB entry.`);
+    console.log(lang.log_function_SETUP_offlineStat_postingStatusMessage({ functionName: module.exports.help.name }));
+  } else return console.log(lang.log_function_SETUP_offlineStat_warn_debugMode({ functionName: module.exports.help.name }));
   let embed = new RichEmbed()
-    .setTitle('Bot back online!')
+    .setTitle(lang.chat_function_SETUP_offlineStat_embed_title())
     .setColor(4296754)
     .setFooter(client.user.tag, client.user.displayAvatarURL)
     .setTimestamp();
   const offlineTime = await OfflineStat.findOne({ where: { ID: 1 } }).catch(errHander);
   if (offlineTime) {
     embed
-      .addField('The time the bot was offline:', `${toTime(startupTime - offlineTime.time * 1)}`, false)
-      .addField('The bot went offline at:', new Date(offlineTime.time * 1), false);
+      .addField(lang.chat_function_SETUP_offlineStat_embed_field_title_botOfflineWhen(), `${toTime(startupTime - offlineTime.time * 1)}`, false)
+      .addField(lang.chat_function_SETUP_offlineStat_embed_field_title_botOfflineAt(), new Date(offlineTime.time * 1), false);
   } else {
-    embed.setDescription('The time that the bot was offline, is missing. A new entry got created!');
+    embed.setDescription(lang.chat_function_SETUP_offlineStat_warn_noDBEntry_embed_desc);
   }
-  client.channels.get(config.logStatusChannel).send({ embed });
+  client.channels.get(config.setup.logStatusChannel).send({ embed });
 
   setInterval(async () => {
     // loop db update in 5 sec intervall
