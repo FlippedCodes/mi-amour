@@ -4,9 +4,9 @@ function buildEmbed(embed, config) {
   const langVarNames = ['prey', 'switch', 'pred', 'nsfwAccess', 'nsflAccess'];
 
   langVarNames.forEach((message) => {
-    let messageTitleComplete = eval(`lang.chat_function_SETUP_roleRequest_embed_field_title_${message}()`);
-    let messageDescComplete = eval(`lang.chat_function_SETUP_roleRequest_embed_field_desc_${message}()`);
-    embed.addField(messageTitleComplete, messageDescComplete, true);
+    let messageTitle = eval(`lang.chat_function_SETUP_roleRequest_embed_field_title_${message}()`);
+    let messageDesc = eval(`lang.chat_function_SETUP_roleRequest_embed_field_desc_${message}()`);
+    embed.addField(messageTitle, messageDesc, true);
   });
   return embed
     .setTitle(lang.chat_function_SETUP_roleRequest_embed_title())
