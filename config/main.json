@@ -4,9 +4,11 @@
     "lang": "en_EN",
     "setup": {
         "logStatusChannel": "470889870160822273",
-        "roleRequestChannels": [
-            "496961294721875969"
-        ],
+        "roleRequest": {
+            "channels": [
+                "496961294721875969"
+            ]
+        },
         "moduleFolders": {
             "functionsFolder": "functions",
             "commandsFolder": "commands"
