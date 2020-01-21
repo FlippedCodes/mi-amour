@@ -1,14 +1,16 @@
 const { RichEmbed } = require('discord.js');
 
 function buildEmbed(embed, config) {
+  const langVarNames = ['prey', 'switch', 'pred', 'nsfwAccess', 'nsflAccess'];
+
+  langVarNames.forEach((message) => {
+    let messageTitleComplete = eval(`lang.chat_function_SETUP_roleRequest_embed_field_title_${message}()`);
+    let messageDescComplete = eval(`lang.chat_function_SETUP_roleRequest_embed_field_desc_${message}()`);
+    embed.addField(messageTitleComplete, messageDescComplete, true);
+  });
   return embed
     .setTitle(lang.chat_function_SETUP_roleRequest_embed_title())
     .setDescription(lang.chat_function_SETUP_roleRequest_embed_desc({ channelID: config.info_channelID }))
-    .addField(lang.chat_function_SETUP_roleRequest_embed_field_title_prey(), lang.chat_function_SETUP_roleRequest_embed_field_desc_prey(), true)
-    .addField(lang.chat_function_SETUP_roleRequest_embed_field_title_switch(), lang.chat_function_SETUP_roleRequest_embed_field_desc_switch(), true)
-    .addField(lang.chat_function_SETUP_roleRequest_embed_field_title_pred(), lang.chat_function_SETUP_roleRequest_embed_field_desc_pred(), true)
-    .addField(lang.chat_function_SETUP_roleRequest_embed_field_title_nsfwAccess(), lang.chat_function_SETUP_roleRequest_embed_field_desc_nsfwAccess(), true)
-    .addField(lang.chat_function_SETUP_roleRequest_embed_field_title_nsflAccess(), lang.chat_function_SETUP_roleRequest_embed_field_desc_nsflAccess(), true)
     .setTimestamp();
 }
 
