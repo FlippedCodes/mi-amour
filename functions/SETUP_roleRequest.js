@@ -13,21 +13,12 @@ function buildEmbed(embed) {
 }
 
 function postReactions(message) {
-  const langVarNames = ['prey', 'switch', 'pred', 'nsfwAcess', 'nsflAcces'];
-  // lang.chat_function_SETUP_roleRequest_reaction_prey(),
-  // lang.chat_function_SETUP_roleRequest_reaction_switch(),
-  // lang.chat_function_SETUP_roleRequest_reaction_pred(),
-  // lang.chat_function_SETUP_roleRequest_reaction_nsfwAcess(),
-  // lang.chat_function_SETUP_roleRequest_reaction_nsflAccess()
-  langVarNames.forEach(async (reaction) => {
+  // FIXME: Random-ass emoji order
+  const langVarNames = ['prey', 'switch', 'pred', 'nsfwAcess', 'nsflAccess'];
+  langVarNames.forEach((reaction) => {
     let reactionComplete = eval(`lang.chat_function_SETUP_roleRequest_reaction_${reaction}()`);
-    await message.react(reactionComplete);
+    message.react(reactionComplete);
   });
-  // await message.react(lang.chat_function_SETUP_roleRequest_reaction_prey());
-  // await message.react(lang.chat_function_SETUP_roleRequest_reaction_switch());
-  // await message.react(lang.chat_function_SETUP_roleRequest_reaction_pred());
-  // await message.react(lang.chat_function_SETUP_roleRequest_reaction_nsfwAcess());
-  // await message.react(lang.chat_function_SETUP_roleRequest_reaction_nsflAccess());
 }
 
 module.exports.run = async (client, config) => {
