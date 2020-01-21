@@ -1,6 +1,6 @@
 const { RichEmbed } = require('discord.js');
 
-function buildEmbed(embed) {
+function buildEmbed(embed, config) {
   return embed
     .setTitle(lang.chat_function_SETUP_roleRequest_embed_title())
     .setDescription(lang.chat_function_SETUP_roleRequest_embed_desc({ channelID: config.info_channelID }))
@@ -23,7 +23,7 @@ function postReactions(message) {
 
 module.exports.run = async (client, config) => {
   // for each server
-  [config.setup.roleRequest.channels].forEach((roleRequest) => {
+  config.setup.roleRequest.channels.forEach((roleRequest) => {
     if (!client.channels.get(roleRequest)) {
       console.log(lang.log_function_SETUP_roleRequest_warn_channelMissing({
         functionName: module.exports.help.name,
@@ -33,7 +33,7 @@ module.exports.run = async (client, config) => {
     }
     client.channels.get(roleRequest).bulkDelete(10)
       .catch((err) => console.log(lang.log_global_error_title(), err));
-    let embed = buildEmbed(new RichEmbed());
+    let embed = buildEmbed(new RichEmbed(), config);
     client.channels.get(roleRequest).send({ embed })
       .then(async (message) => postReactions(message));
   });
