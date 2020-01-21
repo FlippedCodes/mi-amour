@@ -14,7 +14,7 @@ function buildEmbed(embed, config) {
 
 function postReactions(message) {
   // FIXME: Random-ass emoji order
-  const langVarNames = ['prey', 'switch', 'pred', 'nsfwAcess', 'nsflAccess'];
+  const langVarNames = ['prey', 'switch', 'pred', 'nsfwAccess', 'nsflAccess'];
   langVarNames.forEach((reaction) => {
     let reactionComplete = eval(`lang.chat_function_SETUP_roleRequest_reaction_${reaction}()`);
     message.react(reactionComplete);
