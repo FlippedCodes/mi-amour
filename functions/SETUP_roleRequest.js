@@ -12,17 +12,27 @@ function buildEmbed(embed) {
     .setTimestamp();
 }
 
-async function postReactions(message) {
-  await message.react(lang.chat_function_SETUP_roleRequest_reaction_prey());
-  await message.react(lang.chat_function_SETUP_roleRequest_reaction_switch());
-  await message.react(lang.chat_function_SETUP_roleRequest_reaction_pred());
-  await message.react(lang.chat_function_SETUP_roleRequest_reaction_nsfwAcess());
-  await message.react(lang.chat_function_SETUP_roleRequest_reaction_nsflAccess());
+function postReactions(message) {
+  const langVarNames = ['prey', 'switch', 'pred', 'nsfwAcess', 'nsflAcces'];
+  // lang.chat_function_SETUP_roleRequest_reaction_prey(),
+  // lang.chat_function_SETUP_roleRequest_reaction_switch(),
+  // lang.chat_function_SETUP_roleRequest_reaction_pred(),
+  // lang.chat_function_SETUP_roleRequest_reaction_nsfwAcess(),
+  // lang.chat_function_SETUP_roleRequest_reaction_nsflAccess()
+  langVarNames.forEach(async (reaction) => {
+    let reactionComplete = eval(`lang.chat_function_SETUP_roleRequest_reaction_${reaction}()`);
+    await message.react(reactionComplete);
+  });
+  // await message.react(lang.chat_function_SETUP_roleRequest_reaction_prey());
+  // await message.react(lang.chat_function_SETUP_roleRequest_reaction_switch());
+  // await message.react(lang.chat_function_SETUP_roleRequest_reaction_pred());
+  // await message.react(lang.chat_function_SETUP_roleRequest_reaction_nsfwAcess());
+  // await message.react(lang.chat_function_SETUP_roleRequest_reaction_nsflAccess());
 }
 
 module.exports.run = async (client, config) => {
   // for each server
-  [config.setup.roleRequestChannels].forEach((roleRequest) => {
+  [config.setup.roleRequest.channels].forEach((roleRequest) => {
     if (!client.channels.get(roleRequest)) {
       console.log(lang.log_function_SETUP_roleRequest_warn_channelMissing({
         functionName: module.exports.help.name,
