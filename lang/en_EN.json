@@ -6,6 +6,7 @@
     "chat_command_about_embed_title": "About: ",
     "chat_command_avatar_desc": "Retrieves the profile picture of the provided user ID.",
     "chat_command_avatar_err_noUser": "Sorry, but there is no user on this server with the information provided.",
+    "chat_command_checkme_desc": "This comamnd is used in checkin.",
     "chat_command_eval_desc": "Command used to run snippets of code. [ADMINISTRATOR ONLY]",
     "chat_command_eval_err_codeFail": "`ERROR` ```xl\n{{err}}\n```",
     "chat_command_help_desc": "Displays the help of usable commands for the corrent user.",
