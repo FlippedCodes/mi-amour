@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FlipperLP/mawbot2.git"
+    "url": "git+https://github.com/FlipperLP/gurglebot.git"
   },
   "keywords": [],
   "author": "phil",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FlipperLP/mawbot2/issues"
+    "url": "https://github.com/FlipperLP/gurglebot/issues"
   },
-  "homepage": "https://github.com/FlipperLP/mawbot2#readme",
+  "homepage": "https://github.com/FlipperLP/gurglebot#readme",
   "dependencies": {
     "discord.js": "^11.5.1",
     "handlebars": "^4.5.3",
