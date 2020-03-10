@@ -1,0 +1,11 @@
+{
+  "development": {
+    "username": "*********",
+    "password": "***********",
+    "database": "************",
+    "host": "************",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "token": "*********************************************************"
+}
