@@ -1,32 +1,34 @@
 const { RichEmbed } = require('discord.js');
 
-// TODO: use API if user doesnt share server
-
 // creates a embed messagetemplate for failed actions
 function messageFail(client, message, body) {
   client.functions.get('FUNC_richEmbedMessage')
-    .run(client.user, message.channel, body, null, 16449540, false);
+    .run(client.user, message.channel, body, '', 16449540, false);
 }
 
 module.exports.run = async (client, message, args, config) => {
-  let target;
-  if (args[0]) {
-    if (message.mentions.members.first() || message.guild.members.get(args[0])) {
-      target = message.mentions.members.first() || message.guild.members.get(args[0]);
-    } else { return messageFail(client, message, lang.chat_command_avatar_err_noUser()); }
-  } else { target = message.member; }
+  let [userID] = args;
+  if (!userID) userID = message.author.id;
 
-  message.guild.fetchMember(target)
-    .then((member) => {
-      let embed = new RichEmbed()
-        .setAuthor(member.user.tag)
-        .setColor(member.displayColor)
-        .setImage(member.user.avatarURL);
+  const embed = new RichEmbed().setColor(message.member.displayColor);
+  const discordUser = await client.fetchUser(userID, false)
+    .catch((err) => {
+      if (err.code === 10013) embed.setAuthor('This user doesn\'t exist.');
+      else embed.setAuthor('An error occurred!');
+      embed.addField('Stopcode', err.message);
       message.channel.send({ embed });
     });
+
+  if (discordUser.tag) {
+    embed.setAuthor(discordUser.tag, null, discordUser.avatarURL);
+    if (discordUser.avatarURL) embed.setImage(discordUser.avatarURL);
+    else embed.setDescription('No profile picture set!');
+    message.channel.send({ embed });
+  }
 };
 
 module.exports.help = {
   name: 'avatar',
-  desc: lang.chat_command_avatar_desc(),
+  usage: 'USERID',
+  desc: 'Retrieves the profile picture of the provided user ID.',
 };
