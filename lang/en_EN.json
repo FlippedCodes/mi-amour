@@ -38,7 +38,7 @@
     "chat_command_serverinfo_embed_vcRegion": "VC Region",
     "log_function_SETUP_offlineStat_postingStatusMessage": "[{{functionName}}] Posting bot status message!",
     "log_function_SETUP_offlineStat_warn_debugMode": "[{{functionName}}] Bot is in debugging-mode and will not post bot status message or update the DB entry.",
-    "chat_function_SETUP_offlineStat_embed_title": "Bot back online!",
+    "chat_function_SETUP_offlineStat_embed_title": "Gurglebot - Bot back online!",
     "chat_function_SETUP_offlineStat_embed_field_title_botOfflineWhen": "The time the bot went offline:",
     "chat_function_SETUP_offlineStat_embed_field_title_botOfflineAt": "The bot went offline at:",
     "chat_function_SETUP_offlineStat_warn_noDBEntry_embed_desc": "The time that the bot was offline, is missing. A new entry got created!",
