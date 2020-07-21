@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "*********",
+    "username": "gurglebot",
     "password": "***********",
-    "database": "************",
+    "database": "gurglebot",
     "host": "************",
     "dialect": "mysql",
     "operatorsAliases": false
