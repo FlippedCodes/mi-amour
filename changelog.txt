@@ -1,6 +1,6 @@
 **Changelog:**
 * Start of recode:
-  + added 
+  + added
 
 **Plannings:**
 + add CMD overview will get added
