@@ -30,7 +30,7 @@ function checkingFile() {
   log('Checking language file path...');
   // check if file exists
   if (fs.existsSync(file)) {
-    log('Language file exists, creating tempalte...');
+    log('Language file exists, creating template...');
     return getCommands(file);
   } else {
     // kill bot-process if lang file doesn't exist
