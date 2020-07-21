@@ -8,16 +8,14 @@ module.exports.run = async (client, message, args, con, config) => {
   if (server.iconURL) pic = server.iconURL;
 
   let embed = new RichEmbed()
-    .setTimestamp()
     .setAuthor(server.name)
     .setColor(message.member.displayColor)
-    .setFooter(message.client.user.tag, message.client.user.displayAvatarURL)
     .setImage(pic)
     .addField(
       'Server created on',
       `${server.createdAt.toLocaleDateString()} ${server.createdAt.toLocaleTimeString()}`, true,
     )
-    .addField(lang.chat_command_serverinfo_embed_Acronym(), server.nameAcronym, true)
+    .addField(lang.chat_command_serverinfo_embed_acronym(), server.nameAcronym, true)
     .addField(lang.chat_command_serverinfo_embed_name(), server.name, true)
     .addField(lang.chat_command_serverinfo_embed_owner(), server.owner.user.tag, true)
     .addField(lang.chat_command_serverinfo_embed_ID(), server.id, true)
