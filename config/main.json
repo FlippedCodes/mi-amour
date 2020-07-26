@@ -1,6 +1,6 @@
 {
     "name": "GurgleBot",
-    "prefix": "=",
+    "prefix": "g+",
     "lang": "en_EN",
     "setup": {
         "logStatusChannel": "470889870160822273",
