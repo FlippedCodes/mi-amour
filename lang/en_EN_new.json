@@ -1,69 +1,139 @@
 {
     "global": {
         "log": {
-            "errorTitle": "ERROR: "
+            "ready": {
+                "loggedInUser": "[{{functionName}}] Logged in as {{userName}}!"
+            },
+            "err": {
+                "title": "ERROR: "
+            }
+        },
+        "frontEnd": {
+            "err": {
+                "unkown": "Oh no! Something went wrong. This error has been carefully recorded and our nerd is working on it to fix it. Please try again later."
+            }
         }
     },
-    "log_global_error_title": "ERROR: ",
-    "chat_global_error_unkown": "Oh no! Something went wrong. This error has been carefully recorded and our nerd is working on it to fix it. Please try again later.",
-    "log_event_ready_loggedInUser": "[{{functionName}}] Logged in as {{userName}}!",
-    "chat_command_about_desc": "Displays some information about the bot.",
-    "chat_command_about_embed_title": "About: ",
-    "chat_command_avatar_desc": "Retrieves the profile picture of the provided user ID.",
-    "chat_command_avatar_err_noUser": "Sorry, but there is no user on this server with the information provided.",
-    "chat_command_checkme_desc": "This comamnd is used in checkin.",
-    "chat_command_eval_desc": "Command used to run snippets of code. [ADMINISTRATOR ONLY]",
-    "chat_command_eval_err_codeFail": "`ERROR` ```xl\n{{err}}\n```",
-    "chat_command_help_desc": "Displays the help of usable commands for the corrent user.",
-    "chat_command_help_embed_title": "Halp",
-    "chat_command_help_embed_desc": "For additional Info, please ask `Phil | Flipper#3621`",
-    "chat_command_help_embed_field_title": "`{{prefix}}help`",
-    "chat_command_help_embed_field_desc": "Shows this list of commands.",
-    "chat_command_lookup_desc": "Uses the Discord API to lookup userinformaiton.",
-    "chat_command_lookup_error_missingID": "Please provide an ID!",
-    "chat_command_lookup_error_noUserException": "This user doesn't exist.",
-    "chat_command_lookup_error_unkownException_message": "An error occurred!",
-    "chat_command_lookup_error_unkownException_stopCode": "Stopcode:",
-    "chat_command_lookup_embed_field_userTag": "Usertag",
-    "chat_command_lookup_embed_field_userID": "ID",
-    "chat_command_lookup_embed_field_userCreationDate": "Account Creation Date",
-    "chat_command_ping_desc": "Shows API and bot latencies.",
-    "chat_command_ping_embed_ping": "📤 Ping...",
-    "chat_command_ping_embed_pong": "📥 Pong! \nLatency is {{msgLatency}}ms. \nAPI Latency is {{apiLatency}}ms",
-    "chat_command_serverinfo_desc": "Displays serverinfo from the provided server ID.",
-    "chat_command_serverinfo_embed_acronym": "Acronym",
-    "chat_command_serverinfo_embed_name": "Name",
-    "chat_command_serverinfo_embed_owner": "Owner",
-    "chat_command_serverinfo_embed_ID": "ID",
-    "chat_command_serverinfo_embed_channels": "Channels",
-    "chat_command_serverinfo_embed_emojis": "Emojis",
-    "chat_command_serverinfo_embed_membercount": "Membercount",
-    "chat_command_serverinfo_embed_verificationLevel": "Verification level",
-    "chat_command_serverinfo_embed_contentFilter": "Content filter",
-    "chat_command_serverinfo_embed_vcRegion": "VC Region",
-    "log_function_SETUP_offlineStat_postingStatusMessage": "[{{functionName}}] Posting bot status message!",
-    "log_function_SETUP_offlineStat_warn_debugMode": "[{{functionName}}] Bot is in debugging-mode and will not post bot status message or update the DB entry.",
-    "chat_function_SETUP_offlineStat_embed_title": "Bot back online!",
-    "chat_function_SETUP_offlineStat_embed_field_title_botOfflineWhen": "The time the bot went offline:",
-    "chat_function_SETUP_offlineStat_embed_field_title_botOfflineAt": "The bot went offline at:",
-    "chat_function_SETUP_offlineStat_warn_noDBEntry_embed_desc": "The time that the bot was offline, is missing. A new entry got created!",
-    "log_function_SETUP_roleRequest_postingStatusMessage": "[{{functionName}}] Posting rolerequest message!",
-    "log_function_SETUP_roleRequest_warn_channelMissing": "[{{functionName}}] The channel with the ID {{channelID}} doesn't exist and is going to be skipped!",
-    "chat_function_SETUP_roleRequest_embed_title": "Rolerequest",
-    "chat_function_SETUP_roleRequest_embed_desc": "Click on the reactions to get the roles!\nPlease read <#{{channelID}}> for a more details about the roles!",
-    "chat_function_SETUP_roleRequest_embed_field_title_prey": "Prey",
-    "chat_function_SETUP_roleRequest_embed_field_desc_prey": "🦌",
-    "chat_function_SETUP_roleRequest_embed_field_title_switch": "Prey/Pred",
-    "chat_function_SETUP_roleRequest_embed_field_desc_switch": "🔄",
-    "chat_function_SETUP_roleRequest_embed_field_title_pred": "Pred",
-    "chat_function_SETUP_roleRequest_embed_field_desc_pred": "🐉",
-    "chat_function_SETUP_roleRequest_embed_field_title_nsfwAccess": "NSFW Access",
-    "chat_function_SETUP_roleRequest_embed_field_desc_nsfwAccess": "🔞",
-    "chat_function_SETUP_roleRequest_embed_field_title_nsflAccess": "NSFL Access",
-    "chat_function_SETUP_roleRequest_embed_field_desc_nsflAccess": "💩",
-    "chat_function_SETUP_roleRequest_reaction_prey": "🦌",
-    "chat_function_SETUP_roleRequest_reaction_switch": "🔄",
-    "chat_function_SETUP_roleRequest_reaction_pred": "🐉",
-    "chat_function_SETUP_roleRequest_reaction_nsfwAccess": "🔞",
-    "chat_function_SETUP_roleRequest_reaction_nsflAccess": "💩"
+    "command": {
+        "about": {
+            "desc": "Displays some information about the bot.",
+            "output": {
+                "embedTitle": "About: "
+            }
+        },
+        "avatar": {
+            "desc": "Retrieves the profile picture of the provided user ID.",
+            "err": {
+                "noUser": "Sorry, but there is no user on this server with the information provided."
+            }
+        },
+        "checkme": {
+            "desc": "This comamnd is used in checkin."
+        },
+        "eval": {
+            "desc": "Command used to run snippets of code. [OWNER ONLY]",
+            "err": {
+                "codeFail": "`ERROR` ```xl\n{{err}}\n```"
+            }
+        },
+        "help": {
+            "desc": "Displays the help of usable commands for the corrent user.",
+            "output": {
+                "embed": {
+                    "title": "Halp",
+                    "desc": "For additional Info, please ask `Phil | Flipper#3621`",
+                    "field": {
+                        "title": "`{{prefix}}help`",
+                        "desc": "Shows this list of commands."
+                    }
+                }
+            }
+        },
+        "lookup": {
+            "desc": "Uses the Discord API to lookup userinformaiton.",
+            "output": {
+                "embed": {
+                    "field": {
+                        "userTag": "Usertag",
+                        "userID": "ID",
+                        "userCreationDate": "Account Creation Date"
+                    }
+                }
+            },
+            "err": {
+                "missingID": "Please provide an ID!",
+                "noUserException": "This user doesn't exist.",
+                "unkownException_message": "An error occurred!",
+                "unkownException_stopCode": "Stopcode:"
+            }
+        },
+        "ping": {
+            "desc": "Shows API and bot latencies.",
+            "output": {
+                "embed": {
+                    "ping": "📤 Ping...",
+                    "pong": "📥 Pong! \nLatency is {{msgLatency}}ms. \nAPI Latency is {{apiLatency}}ms"
+                }
+            }
+        },
+        "serverinfo": {
+            "desc": "Displays serverinfo from the provided server ID.",
+            "output": {
+                "embed": {
+                    "acronym": "Acronym",
+                    "name": "Name",
+                    "owner": "Owner",
+                    "ID": "ID",
+                    "channels": "Channels",
+                    "emojis": "Emojis",
+                    "membercount": "Membercount",
+                    "verificationLevel": "Verification level",
+                    "contentFilter": "Content filter",
+                    "vcRegion": "VC Region"
+                }
+            }
+        }
+    },
+    "function": {
+        "SETUP": {
+            "offlineStat": {
+                "log": {
+                    "success": {
+                        "postingStatusMessage": "[{{functionName}}] Posting bot status message!"
+                    },
+                    "warn": {
+                        "debugMode": "[{{functionName}}] Bot is in debugging-mode and will not post bot status message or update the DB entry."
+                    }
+                },
+                "output": {
+                    "embed": {
+                        "title": "Bot back online!",
+                        "field": {
+                            "botOfflineWhen": "The time the bot went offline:",
+                            "botOfflineAt": "The bot went offline at:"
+                        }
+                    }
+                },
+                "warn": {
+                    "noDBEntry": "The time that the bot was offline, is missing. A new entry got created!"
+                }
+            },
+            "roleRequest": {
+                "log": {
+                    "success": {
+                        "postingStatusMessage": "[{{functionName}}] Posting rolerequest message!"
+                    },
+                    "warn": {
+                        "channelMissing": "[{{functionName}}] The channel with the ID {{channelID}} doesn't exist and is going to be skipped!"
+                    }
+                },
+                "output": {
+                    "embed": {
+                        "title": "Rolerequest",
+                        "desc": "Click on the reactions to get the roles!\nPlease read <#{{channelID}}> for a more details about the roles!"
+                    }
+                }
+            }
+        }
+    }
 }
