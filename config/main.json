@@ -5,7 +5,39 @@
     "setup": {
         "logStatusChannel": "470889870160822273",
         "roleRequest": {
-            "channel": "669278640667623434"
+            "channel": "669278640667623434",
+            "roles": {
+                "prey": {
+                    "name": "Prey",
+                    "roleID": "300980508899278848",
+                    "emoji": "🦌"
+                },
+                "switch": {
+                    "name": "Prey/Pred",
+                    "roleID": "300980566386540544",
+                    "emoji": "🔄"
+                },
+                "pred": {
+                    "name": "Pred",
+                    "roleID": "300980426548445186",
+                    "emoji": "🐉"
+                },
+                "NSFW": {
+                    "name": "NSFW Access",
+                    "roleID": "573614662445301772",
+                    "emoji": "🔞"
+                },
+                "NSFL": {
+                    "name": "NSFL Access",
+                    "roleID": "333646914757197824",
+                    "emoji": "💩"
+                },
+                "venting": {
+                    "name": "Venting Access",
+                    "roleID": "615218706657574952",
+                    "emoji": "💨"
+                }
+            }
         },
         "moduleFolders": {
             "functionsFolder": "functions",

@@ -1,11 +1,10 @@
+/* eslint-disable no-restricted-syntax */
 const { RichEmbed } = require('discord.js');
 
-async function buildEmbed(config, langVarNames) {
+async function buildEmbed(config, roleData) {
   const embed = new RichEmbed();
-  await langVarNames.forEach(async (message) => {
-    let messageTitle = await eval(`lang.chat_function_SETUP_roleRequest_embed_field_title_${message}()`);
-    let messageDesc = await eval(`lang.chat_function_SETUP_roleRequest_embed_field_desc_${message}()`);
-    await embed.addField(messageTitle, messageDesc, true);
+  await Object.entries(roleData).forEach(async (reaction) => {
+    await embed.addField(reaction[1].name, reaction[1].emoji, true);
   });
   const result = embed
     .setTitle(lang.chat_function_SETUP_roleRequest_embed_title())
@@ -13,11 +12,9 @@ async function buildEmbed(config, langVarNames) {
   return result;
 }
 
-async function postReactions(message, langVarNames) {
-  // FIXME: Random-ass emoji order
-  await langVarNames.forEach(async (reaction) => {
-    let reactionComplete = eval(`lang.chat_function_SETUP_roleRequest_reaction_${reaction}()`);
-    await message.react(await reactionComplete);
+async function postReactions(message, roleData) {
+  await Object.entries(roleData).forEach(async (reaction) => {
+    await message.react(await reaction[1].emoji);
   });
 }
 
@@ -32,10 +29,10 @@ module.exports.run = async (client, config) => {
   }
   client.channels.get(roleRequest).bulkDelete(10)
     .catch((err) => console.log(lang.log_global_error_title(), err));
-  const langVarNames = ['prey', 'switch', 'pred', 'nsfwAccess', 'nsflAccess'];
-  let embed = await buildEmbed(config, langVarNames);
+  const roleData = config.setup.roleRequest.roles;
+  let embed = await buildEmbed(config, roleData);
   client.channels.get(roleRequest).send({ embed })
-    .then(async (message) => postReactions(message, langVarNames));
+    .then(async (message) => postReactions(message, roleData));
 };
 
 module.exports.help = {
