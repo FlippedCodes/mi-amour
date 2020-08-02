@@ -45,6 +45,10 @@ client.on('message', async (message) => {
   client.functions.get('EVENT_message').run(client, message, config);
 });
 
+client.on('messageReactionAdd', async (reaction, user) => {
+  client.functions.get('EVENT_messageReactionAdd').run(client, reaction, user, config);
+});
+
 // logging errors
 client.on('error', (e) => console.error(e));
 client.on('warn', (e) => console.warn(e));
