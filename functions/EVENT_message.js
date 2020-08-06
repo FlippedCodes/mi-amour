@@ -8,19 +8,15 @@ module.exports.run = async (client, message, config) => {
   if (message.member.roles.find((role) => role.id === config.teamRole)) config.env.set('isTeam', true);
 
   // put comamnd in array
-  let messageArray = message.content.split(/\s+/g);
-  let command = messageArray[0];
-  let args = messageArray.slice(1);
+  const messageArray = message.content.split(/\s+/g);
+  const command = messageArray[0];
+  const args = messageArray.slice(1);
 
   // return if not prefix
   if (!command.startsWith(config.prefix)) return;
 
-  // check if server is on ParticipatingServers Table
-  let serverID = null;
-  if (message.channel.guild) serverID = message.channel.guild.id;
-
   // remove prefix and lowercase
-  let cmd = client.commands.get(command.slice(config.prefix.length).toLowerCase());
+  const cmd = client.commands.get(command.slice(config.prefix.length).toLowerCase());
 
   // run cmd if existent
   if (cmd) {
