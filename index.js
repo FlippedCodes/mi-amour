@@ -49,6 +49,13 @@ client.on('messageReactionAdd', async (reaction, user) => {
   client.functions.get('EVENT_messageReactionAdd').run(client, reaction, user, config);
 });
 
+// trigger on reaction with raw package
+client.on('raw', async (packet) => {
+  if (packet.t === 'MESSAGE_REACTION_ADD' && packet.d.guild_id) {
+    client.functions.get('FUNC_checkinReaction').run(client, packet.d, config);
+  }
+});
+
 // logging errors
 client.on('error', (e) => console.error(e));
 client.on('warn', (e) => console.warn(e));
