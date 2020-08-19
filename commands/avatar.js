@@ -1,11 +1,5 @@
 const { RichEmbed } = require('discord.js');
 
-// creates a embed messagetemplate for failed actions
-function messageFail(client, message, body) {
-  client.functions.get('FUNC_richEmbedMessage')
-    .run(client.user, message.channel, body, '', 16449540, false);
-}
-
 module.exports.run = async (client, message, args, config) => {
   let [userID] = args;
   if (!userID) userID = message.author.id;
