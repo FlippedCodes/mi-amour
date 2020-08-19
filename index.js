@@ -29,7 +29,7 @@ require('./database/SETUP_DBConnection');
 // Login the bot
 client.login(config.env.get('token'));
 
-client.on('ready', async () => {
+client.once('ready', async () => {
   // confirm user logged in
   console.log(lang.log_event_ready_loggedInUser({
     functionName: config.name,
