@@ -13,10 +13,10 @@ module.exports.run = async (client, message, args, config) => {
       message.channel.send({ embed });
     });
 
-  if (discordUser.tag) {
-    embed.setAuthor(discordUser.tag, null, discordUser.avatarURL);
-    if (discordUser.avatarURL) embed.setImage(discordUser.avatarURL);
-    else embed.setDescription('No profile picture set!');
+  if (discordUser) {
+    const pfp = discordUser.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 });
+    embed.setAuthor(discordUser.tag, null, pfp);
+    embed.setImage(pfp);
     message.channel.send({ embed });
   }
 };
