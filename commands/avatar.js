@@ -1,11 +1,11 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (client, message, args, config) => {
   let [userID] = args;
   if (!userID) userID = message.author.id;
 
-  const embed = new RichEmbed().setColor(message.member.displayColor);
-  const discordUser = await client.fetchUser(userID, false)
+  const embed = new MessageEmbed().setColor(message.member.displayColor);
+  const discordUser = await client.users.fetch(userID, false)
     .catch((err) => {
       if (err.code === 10013) embed.setAuthor('This user doesn\'t exist.');
       else embed.setAuthor('An error occurred!');

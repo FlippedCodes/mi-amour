@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 // TODO: rewrite
 
@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args, con, config) => {
   let pic = 'https://pbs.twimg.com/profile_images/715852271389655041/s-VdeDI5_400x400.jpg';
   if (server.iconURL) pic = server.iconURL;
 
-  let embed = new RichEmbed()
+  let embed = new MessageEmbed()
     .setAuthor(server.name)
     .setColor(message.member.displayColor)
     .setImage(pic)

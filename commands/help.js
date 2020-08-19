@@ -1,8 +1,8 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (client, message, args, config) => {
   // prepare title and user CMDs
-  let embed = new RichEmbed()
+  let embed = new MessageEmbed()
     .setTitle(lang.chat_command_help_embed_title())
     .setColor(message.member.displayColor)
     .setDescription(lang.chat_command_help_embed_desc())

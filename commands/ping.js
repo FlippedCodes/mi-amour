@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 // Ping kickoff for bot latency
 function kickoff(client, message) {
@@ -12,7 +12,7 @@ function editedMessage(sentMessage, message) {
     msgLatency: sentMessage.createdTimestamp - message.createdTimestamp,
     apiLatency: Math.round(sentMessage.client.ping),
   });
-  return new RichEmbed()
+  return new MessageEmbed()
     .setDescription(body)
     .setColor();
 }

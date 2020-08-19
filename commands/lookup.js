@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 const rp = require('request-promise');
 
@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args, config) => {
 
   if (!id) return message.channel.send(lang.chat_command_lookup_error_missingID());
 
-  let embed = new RichEmbed()
+  let embed = new MessageEmbed()
     .setColor(message.member.displayColor)
     .setFooter(client.user.tag, client.user.displayAvatarURL)
     .setTimestamp();
