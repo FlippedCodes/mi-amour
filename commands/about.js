@@ -2,7 +2,7 @@ const fs = require('fs');
 
 // creates a embed messagetemplate for succeded actions
 function postMessage(client, message, body, error) {
-  client.functions.get('FUNC_richEmbedMessage')
+  client.functions.get('FUNC_EmbedMessage')
     .run(client.user, message.channel, body, lang.chat_command_about_embed_title(), message.member.displayColor, false);
 }
 
@@ -11,7 +11,7 @@ function postMessage(client, message, body, error) {
 // TODO: make errorlogchannel in server
 function error(client, channel, err) {
   console.error(lang.log_global_error_title(), err);
-  client.functions.get('FUNC_richEmbedMessage')
+  client.functions.get('FUNC_EmbedMessage')
     .run(client.user, channel, lang.chat_global_error_unkown(), '', 16449540, false);
 }
 

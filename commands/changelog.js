@@ -10,7 +10,7 @@ async function checkPermissions(message) {
 
 // creates a embed messagetemplate for failed actions
 function messageFail(client, message, body) {
-  client.functions.get('FUNC_richEmbedMessage')
+  client.functions.get('FUNC_EmbedMessage')
     .run(client.user, message.channel, body, '', 16449540, false);
 }
 
