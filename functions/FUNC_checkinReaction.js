@@ -1,3 +1,5 @@
+const errHander = (err) => { console.error('ERROR:', err); };
+
 module.exports.run = async (client, reaction, config) => {
   // check channel
   if (reaction.channel_id !== config.checkin.reaction.channel) return;
