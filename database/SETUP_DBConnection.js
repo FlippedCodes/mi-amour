@@ -1,16 +1,20 @@
 const Sequelize = require('sequelize');
 
-const testToken = '../config/config.json';
+const fs = require('fs');
+
+const testToken = './config/config.json';
 
 const config = require('../config/main.json');
+
+const inDev = fs.existsSync(testToken);
 
 console.log('[DB] Connecting...');
 let database;
 let user;
 let password;
 let host;
-if (config.env.get('inDev')) {
-  const DBCredentials = require(testToken).development;
+if (inDev) {
+  const DBCredentials = require(`.${testToken}`).development;
   database = DBCredentials.database;
   user = DBCredentials.username;
   password = DBCredentials.password;
@@ -22,7 +26,7 @@ if (config.env.get('inDev')) {
   host = process.env.DBHost;
 }
 const sequelize = new Sequelize(
-  database, user, password, { host, dialect: 'mysql', logging: config.env.get('inDev') },
+  database, user, password, { host, dialect: 'mysql', logging: inDev },
 );
 console.log('[DB] Connected!');
 

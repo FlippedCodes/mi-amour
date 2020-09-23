@@ -1,10 +1,8 @@
-const testToken = './config/config.json';
-
-module.exports.run = async (client, fs, config) => {
+module.exports.run = async (client, fs, config, inDev) => {
   // setting inDev var
   console.log(`[${module.exports.help.name}] Setting environment variables...`);
-  if (fs.existsSync(testToken)) {
-    const token = require(`.${testToken}`).token;
+  if (inDev) {
+    const token = require('../config/config.json').token;
     config.env.set('inDev', true);
     config.env.set('token', token);
   } else {
