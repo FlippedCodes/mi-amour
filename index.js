@@ -6,8 +6,11 @@ const client = new Discord.Client({ disableEveryone: true });
 // const sequelize = require('sequelize');
 // init filesystem
 const fs = require('fs');
-// init config
-const config = require('./config/main.json');
+// init correct config
+const inDev = fs.existsSync('./config/config.json');
+let config;
+if (inDev) config = require('./config/main_testing.json');
+else config = require('./config/main.json');
 
 // get language file
 require('./lang/SETUP_langFile');
@@ -20,7 +23,7 @@ config.env = new Discord.Collection();
 // load Functions and Commands
 config.setup.startupFunctions.forEach((FCN) => {
   let INIT = require(`./functions/${FCN}.js`);
-  INIT.run(client, fs, config);
+  INIT.run(client, fs, config, inDev);
 });
 
 // create conenction to DB
