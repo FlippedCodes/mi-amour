@@ -1,19 +1,37 @@
 const errHander = (err) => { console.error('ERROR:', err); };
 
-async function getWelcomeMessage(config, user) {
-  const fs = require('fs');
-  const message = await fs.readFile('./config/abo', 'utf8', (err, data) => {
-    let output;
-    if (err) {
-      console.log(err);
-      output = `I'm sowwy, but something went wrong setting up your welcome message, <@${user.id}>. A team member is going to assist you with this.
-      
-      ~~<@&${config.teamRole}>, pls fix~~`;
-    } else output = data;
-    return output;
-  });
-  return message;
-}
+const welcomeMessage = (userID) => `
+Hey there <@!${userID}>! Welcome to TDM.
+Before we let you in im going to ask you some questions, before a staff member is going to let you in.
+
+:one: - how did you find our server?
+:two: - are you on any other vore servers?
+:three: - do you like vore and what is your favorite?
+:four: - how old are you?
+
+When you are done please ping/mention \`@Team\`, so we know that you are done and ready to be reviewd.
+`;
+
+// async function getWelcomeMessage(config, user) {
+//   const fs = require('fs');
+//   const message = `
+//   Hey there! Welcome to TDM
+//   `;
+//   // let message;
+//   // await new Promise((resolve) => {
+//   //   fs.readFile('./config/about.txt', 'utf8', (err, data) => {
+//   //     if (err) {
+//   //       errHander(err);
+//   //       message = `I'm sowwy, but something went wrong setting up your welcome message, <@${user.id}>. A team member is going to assist you with this.
+
+//   //       ~~<@&${config.teamRole}>, pls fix~~`;
+//   //       return;
+//   //     }
+//   //     message = data;
+//   //   });
+//   // });
+//   return message;
+// }
 
 module.exports.run = async (client, reaction, config) => {
   // check emoji and channel
@@ -36,13 +54,12 @@ module.exports.run = async (client, reaction, config) => {
   Avatar: ${user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 })}
   Days since creation: ${dayDiff};
   Creation date: ${user.createdAt}`;
-  const test = await getWelcomeMessage(config, user);
-  await guild.channels.create(user.id, { type: 'text' })
+  guild.channels.create(user.id, { type: 'text' })
     .then((channel) => channel.setParent(config.checkin.categoryID))
     .then((channel) => channel.lockPermissions())
     .then((channel) => channel.createOverwrite(user, { VIEW_CHANNEL: true }))
     .then((channel) => channel.setTopic(topic))
-    .then(async (channel) => channel.send(test))
+    .then(async (channel) => channel.send(welcomeMessage(user.id)))
     .catch(errHander);
 };
 
