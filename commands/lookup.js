@@ -35,6 +35,7 @@ module.exports.run = async (client, message, args, config) => {
 
 module.exports.help = {
   name: 'lookup',
+  title: 'Lookup user ID',
   usage: 'USERID',
   desc: 'Uses the Discord API to lookup userinformaiton',
 };

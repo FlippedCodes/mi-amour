@@ -23,6 +23,7 @@ module.exports.run = async (client, message, args, config) => {
 
 module.exports.help = {
   name: 'avatar',
+  title: 'Get Avatar',
   usage: 'USERID',
   desc: 'Retrieves the profile picture of the provided user ID.',
 };

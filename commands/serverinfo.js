@@ -31,5 +31,6 @@ module.exports.run = async (client, message, args, con, config) => {
 
 module.exports.help = {
   name: 'serverinfo',
+  title: 'About this server',
   desc: lang.chat_command_serverinfo_desc(),
 };

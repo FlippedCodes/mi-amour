@@ -31,4 +31,5 @@ module.exports.run = async (client, message, args, con, config) => {
 
 module.exports.help = {
   name: 'changelog',
+  title: 'Changelog',
 };

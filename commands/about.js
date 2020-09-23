@@ -24,5 +24,6 @@ module.exports.run = async (client, message, args, config) => {
 
 module.exports.help = {
   name: 'about',
+  title: 'About me',
   desc: lang.chat_command_about_desc(),
 };
