@@ -55,7 +55,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 // trigger on reaction with raw package
 client.on('raw', async (packet) => {
   if (packet.t === 'MESSAGE_REACTION_ADD' && packet.d.guild_id) {
-    client.functions.get('FUNC_checkinReaction').run(client, packet.d, config);
+    client.functions.get('FUNC_checkinInitReaction').run(client, packet.d, config);
   }
 });
 

@@ -33,6 +33,24 @@ When you are done please ping/mention \`@Team\`, so we know that you are done an
 //   return message;
 // }
 
+// calculate user creation
+function calcUserAge(user) {
+  const currentDate = new Date();
+  const creationDate = new Date(user.createdAt);
+  const msDiff = Math.abs(currentDate - creationDate);
+  return Math.ceil(msDiff / (1000 * 60 * 60 * 24));
+}
+
+function createChannel(guild, user, config, topic) {
+  guild.channels.create(user.id, { type: 'text' })
+    .then((channel) => channel.setParent(config.checkin.categoryID))
+    .then((channel) => channel.lockPermissions())
+    .then((channel) => channel.createOverwrite(user, { VIEW_CHANNEL: true }))
+    .then((channel) => channel.setTopic(topic))
+    .then(async (channel) => channel.send(welcomeMessage(user.id)))
+    .catch(errHander);
+}
+
 module.exports.run = async (client, reaction, config) => {
   // check emoji and channel
   const configReaction = config.checkin.reaction;
@@ -42,11 +60,7 @@ module.exports.run = async (client, reaction, config) => {
   // TODO: check if user already has checkin channel
   const guild = await client.guilds.cache.find((guild) => guild.id === reaction.guild_id);
   const user = await client.users.fetch(reaction.member.user.id, false);
-  // calculate user creation
-  const currentDate = new Date();
-  const creationDate = new Date(user.createdAt);
-  const msDiff = Math.abs(currentDate - creationDate);
-  const dayDiff = Math.ceil(msDiff / (1000 * 60 * 60 * 24));
+  const dayDiff = calcUserAge(user);
   // TODO: add DB table to check if user was in guild before
   // Create channel, set settings and edit channel topic
   const topic = `
@@ -54,15 +68,14 @@ module.exports.run = async (client, reaction, config) => {
   Avatar: ${user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 })}
   Days since creation: ${dayDiff};
   Creation date: ${user.createdAt}`;
-  guild.channels.create(user.id, { type: 'text' })
-    .then((channel) => channel.setParent(config.checkin.categoryID))
-    .then((channel) => channel.lockPermissions())
-    .then((channel) => channel.createOverwrite(user, { VIEW_CHANNEL: true }))
-    .then((channel) => channel.setTopic(topic))
-    .then(async (channel) => channel.send(welcomeMessage(user.id)))
-    .catch(errHander);
+  createChannel(guild, user, config, topic);
+  // remvove user reaction
+  const reactionChannel = await guild.channels.cache.get(config.checkin.reaction.channel);
+  const reactionMessage = await reactionChannel.messages.fetch(config.checkin.reaction.message);
+  const initalReaction = await reactionMessage.reactions.cache.get(config.checkin.reaction.emoji);
+  initalReaction.users.remove(user);
 };
 
 module.exports.help = {
-  name: 'FUNC_checkinReaction',
+  name: 'FUNC_checkinInitReaction',
 };
