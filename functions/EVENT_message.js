@@ -7,6 +7,10 @@ module.exports.run = async (client, message, config) => {
   // TODO: foreach, with more roles
   if (message.member.roles.cache.find((role) => role.id === config.teamRole)) config.env.set('isTeam', true);
 
+  // functions for non commands:
+  // checkin complete questioning Reaction adding
+  client.functions.get('FUNC_checkinPostReaction').run(client, message, config);
+
   // put comamnd in array
   const messageArray = message.content.split(/\s+/g);
   const command = messageArray[0];

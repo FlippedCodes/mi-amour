@@ -48,6 +48,10 @@ client.on('message', async (message) => {
   client.functions.get('EVENT_message').run(client, message, config);
 });
 
+client.on('guildMemberRemove', async (member) => {
+  client.functions.get('EVENT_guildMemberRemove').run(client, member, config);
+});
+
 client.on('messageReactionAdd', async (reaction, user) => {
   client.functions.get('EVENT_messageReactionAdd').run(client, reaction, user, config);
 });
