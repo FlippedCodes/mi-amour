@@ -27,7 +27,7 @@ module.exports.run = async (client, config) => {
   } else {
     embed.setDescription(lang.chat_function_SETUP_offlineStat_warn_noDBEntry_embed_desc);
   }
-  client.channels.get(config.setup.logStatusChannel).send({ embed });
+  client.channels.cache.get(config.setup.logStatusChannel).send({ embed });
 
   setInterval(async () => {
     // loop db update in 5 sec intervall
