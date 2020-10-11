@@ -30,51 +30,57 @@ function checkAllowed(DoB) {
   return age >= 18;
 }
 
-module.exports.run = async (client, message, args, config, MessageEmbed, prefix) => {
-  // check if user can manage servers
-  if (!message.member.hasPermission('MANAGE_GUILD')) return messageFail(message, 'You dwon\'t hawe access to thwis command òwó');
-  // split args
-  const [subcmd, userID, newDoB] = args;
-
-  // validate provided info
+// validate provided info
+async function validate(client, message, prefix, subcmd, userID, date) {
   if (!userID) {
-    return messageFail(message,
+    messageFail(message,
       `Command usage: 
       \`\`\`${prefix}${module.exports.help.parent} ${subcmd} USERID DoB\`\`\``);
+    return false;
   }
   if (isNaN(userID)) {
-    return messageFail(message,
+    messageFail(message,
       `Your provided ID is not a number!
       Command usage: 
       \`\`\`${prefix}${module.exports.help.parent} ${subcmd} USERID AGE\`\`\``);
+    return false;
   }
   const checkedUID = await client.functions.get('FUNC_checkID').run(userID, client, 'user');
   if (!checkedUID) {
-    return messageFail(message,
+    messageFail(message,
       `Your provided ID is not from a user!
       Command usage: 
       \`\`\`${prefix}${module.exports.help.parent} ${subcmd} USERID DoB\`\`\``);
+    return false;
   }
-  if (!newDoB) {
-    return messageFail(message,
-      `Command usage: 
-      \`\`\`${prefix}${module.exports.help.parent} ${subcmd} ${userID} DoB\`\`\``);
-  }
-  const date = moment(newDoB, config.DoBchecking.dateFormats, false);
   if (!date.isValid()) {
-    return messageFail(message,
+    messageFail(message,
       `Your provided DoB is not a date!
       Command usage: 
       \`\`\`${prefix}${module.exports.help.parent} ${subcmd} ${userID} DoB\`\`\``);
+    return false;
   }
+  return true;
+}
+
+module.exports.run = async (client, message, args, config, MessageEmbed, prefix) => {
+  // check if user can manage servers
+  if (!message.member.hasPermission('MANAGE_GUILD')) return messageFail(message, 'You don\'t have access to this command! òwó');
+  // split args
+  const [subcmd, userID, newDoB] = args;
+
+  // get date
+  const date = moment(newDoB, config.DoBchecking.dateFormats, false);
+
+  if (!await validate(client, message, prefix, subcmd, userID, date)) return;
 
   // add entry
   const allow = checkAllowed(date);
   // const added = await addUser(userID, newDoB);
-  // messageSuccess(message, `DEBUG:
-  // DoB: \`${newDoB}\`
-  // parsedDoB: \`${date.toDate()}\`
-  // Age: \`${allow}\``);
+  messageSuccess(message, `DEBUG:
+  DoB: \`${newDoB}\`
+  parsedDoB: \`${date.toDate()}\`
+  Age: \`${allow}\``);
   // if (added) {
   //   messageSuccess(message, `\`${userID}\` has been added.`);
   // } else {
