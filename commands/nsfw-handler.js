@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args, config, MessageEmbed) => {
   // check DM
   if (message.channel.type === 'dm') return messageFail(client, message, 'This comamnd is for servers only.');
   const [subcmd] = args;
-  const commandValues = ['add', 'deny', 'change', 'search'];
+  const commandValues = ['add', 'allow', 'change', 'search'];
   const currentCMD = module.exports.help;
   if (commandValues.includes(subcmd)) {
     client.functions.get(`CMD_${currentCMD.name}_${subcmd}`)
