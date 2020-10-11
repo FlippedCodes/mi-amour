@@ -5,14 +5,18 @@ function CommandUsage(prefix, cmdName, subcmd) {
 }
 
 // creates a embed messagetemplate for failed actions
-function messageFail(client, message, body) {
+function messageFail(message, body) {
+  const client = message.client;
   client.functions.get('FUNC_MessageEmbedMessage')
-    .run(client.user, message.channel, body, '', 16449540, false);
+    .run(client.user, message.channel, body, '', 16449540, false)
+    .then((msg) => msg.delete({ timeout: 10000 }));
 }
 
 module.exports.run = async (client, message, args, config, MessageEmbed) => {
   // check DM
-  if (message.channel.type === 'dm') return messageFail(client, message, 'This comamnd is for servers only.');
+  if (message.channel.type === 'dm') return messageFail(message, 'This comamnd is for servers only.');
+  // check if user can manage servers
+  if (!message.member.hasPermission('MANAGE_GUILD')) return messageFail(message, 'You don\'t have access to this command! òwó');
   const [subcmd] = args;
   const commandValues = ['add', 'allow', 'change', 'search'];
   const currentCMD = module.exports.help;
