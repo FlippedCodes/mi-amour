@@ -2,9 +2,8 @@ module.exports.run = async (client, reaction, user, config) => {
   if (user.bot) return;
 
   // rolerequest
-  // if (reaction.message.channel.id === config.setup.roleRequest.channel) {
-  //   client.functions.get('FUNC_userRoleRequest').run(client, reaction, user, config);
-  // }
+  client.functions.get('FUNC_userRoleRequest').run(client, reaction, user, config);
+  // checkin
   client.functions.get('FUNC_checkinCompletedReaction').run(client, reaction, user, config);
 };
 
