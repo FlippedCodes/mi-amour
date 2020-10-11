@@ -50,7 +50,6 @@
             "STARTUP_envPrep"
         ],
         "setupFunctions": [
-            "SETUP_roleRequest",
             "SETUP_offlineStat",
             "SETUP_status"
         ]
