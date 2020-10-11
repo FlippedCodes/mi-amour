@@ -52,7 +52,7 @@ module.exports.run = async (client, message, args, con, config) => {
           embed
             .setDescription(`The entry for \`${member}\` with the age of \`${age}\` got created!`)
             .addField('Created by', message.member.user.tag, true);
-          client.channels.get(config.logAge).send(embed);
+          client.channels.cache.get(config.logAge).send(embed);
         } else {
           embed.setDescription('This user has already a DB entry!');
         }
@@ -79,7 +79,7 @@ module.exports.run = async (client, message, args, con, config) => {
             .addField('Old allowence', rows[0].allowed, true)
             .addField('Newly submitted allowence', age, true)
             .addField('Changed by', message.member.user.tag, true);
-          client.channels.get(config.logAge).send(embed);
+          client.channels.cache.get(config.logAge).send(embed);
         } else {
           embed.setDescription('There has been found no user with the information provided!');
         }
@@ -109,7 +109,7 @@ module.exports.run = async (client, message, args, con, config) => {
             .addField('Old age', rows[0].userAge, true)
             .addField('Newly submitted age', age, true)
             .addField('Changed by', message.member.user.tag, true);
-          client.channels.get(config.logAge).send(embed);
+          client.channels.cache.get(config.logAge).send(embed);
         } else {
           embed.setDescription('There has been found no user with the information provided!');
         }
