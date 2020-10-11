@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (channel, userTag, userID, age, DoB, allow, teammemberTag, log, config) => {
-  // needs to be local as settings overlap from dofferent embed-requests
+  // needs to be local as settings overlap from different embed-requests
   const embed = new MessageEmbed();
 
   let color = 16741376;
