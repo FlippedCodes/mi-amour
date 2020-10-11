@@ -6,9 +6,7 @@
         "logStatusChannel": "470889870160822273",
         "roleRequest": {
             "channelID": "669278640667623434",
-            "unique": [
-                ["prey", "pred", "switch"]
-            ],
+            "unique": ["300980508899278848", "300980566386540544", "300980426548445186"],
             "roles": [
                 {
                     "name": "Prey",
