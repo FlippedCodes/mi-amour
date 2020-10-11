@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args, config, MessageEmbed) => {
   // check if user can manage servers
   if (!message.member.hasPermission('MANAGE_GUILD')) return messageFail(message, 'You don\'t have access to this command! òwó');
   const [subcmd] = args;
-  const commandValues = ['add', 'allow', 'change', 'search'];
+  const commandValues = ['add', 'allow', 'change', 'search', 'calc'];
   const currentCMD = module.exports.help;
   if (commandValues.includes(subcmd)) {
     client.functions.get(`CMD_${currentCMD.name}_${subcmd}`)
