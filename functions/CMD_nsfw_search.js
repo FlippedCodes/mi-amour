@@ -1,13 +1,10 @@
+const { MessageEmbed } = require('discord.js');
+
+const moment = require('moment');
+
 const userDoB = require('../database/models/UserDoB');
 
 const errHander = (err) => { console.error('ERROR:', err); };
-
-// creates a embed messagetemplate for succeded actions
-function messageSuccess(message, body) {
-  const client = message.client;
-  client.functions.get('FUNC_MessageEmbedMessage')
-    .run(client.user, message.channel, body, '', 4296754, false);
-}
 
 // creates a embed messagetemplate for failed actions
 function messageFail(message, body) {
@@ -17,30 +14,79 @@ function messageFail(message, body) {
     .then((msg) => msg.delete({ timeout: 10000 }));
 }
 
-async function addTag(tag, serverID, managementServerID) {
-  if (await userDoB.findOne({ where: { serverID: [serverID, managementServerID], tag } }).catch(errHander)) return false;
-  await userDoB.findOrCreate({ where: { serverID, tag } }).catch(errHander);
+async function searchUser(ID) {
+  const result = await userDoB.findOne({ where: { ID } }).catch(errHander);
+  return result;
+}
+
+// validate provided info
+async function validate(client, message, prefix, subcmd, userID) {
+  if (!userID) {
+    messageFail(message,
+      `Command usage: 
+      \`\`\`${prefix}${module.exports.help.parent} ${subcmd} USERID\`\`\``);
+    return false;
+  }
+  if (isNaN(userID)) {
+    messageFail(message,
+      `**Your provided ID is not a number!**
+      Command usage: 
+      \`\`\`${prefix}${module.exports.help.parent} ${subcmd} USERID\`\`\``);
+    return false;
+  }
+  const checkedUID = await client.functions.get('FUNC_checkID').run(userID, client, 'user');
+  if (!checkedUID) {
+    messageFail(message,
+      `**Your provided ID is not from a user!**
+      Command usage: 
+      \`\`\`${prefix}${module.exports.help.parent} ${subcmd} USERID\`\`\``);
+    return false;
+  }
   return true;
 }
 
+function sendMessage(channel, userTag, userID, age, DoB, allow, teammemberTag, updated, created) {
+  let color = 16741376;
+  if (allow) color = 4296754;
+
+  const embed = new MessageEmbed()
+    .setColor(color)
+    .setTitle(`${userTag}`)
+    .addFields([
+      { name: 'ID', value: userID, inline: true },
+      { name: 'Age', value: age, inline: true },
+      { name: 'DoB', value: DoB, inline: true },
+      { name: 'Allow', value: allow, inline: true },
+      { name: 'Created by', value: teammemberTag, inline: true },
+      { name: 'Created at', value: created, inline: false },
+      { name: 'Updated at', value: updated, inline: false },
+    ]);
+
+  // send message
+  channel.send(embed);
+}
+
 module.exports.run = async (client, message, args, config, MessageEmbed, prefix) => {
-  // check if user can manage servers
-  if (!message.member.hasPermission('MANAGE_GUILD')) return messageFail(message, 'You dwon\'t hawe access to thwis command òwó');
-  const [subcmd, tag] = args;
-  if (!tag) {
-    return messageFail(message,
-      `Command usage: 
-      \`\`\`${prefix}${module.exports.help.parent} ${subcmd} TAGNAME\`\`\``);
-  }
-  if (tag.length > 30) {
-    return messageFail(message, 'Your tawg is too long. The maximum length is 30 characters.');
-  }
-  const added = await addTag(tag, message.guild.id, config.managementServerID);
-  if (added) {
-    messageSuccess(message, `\`${tag}\` has been added to the serwers blacklist.`);
-  } else {
-    messageFail(message, `\`${tag}\` is already added to thwis serwers backlist.`);
-  }
+  // split args
+  const [subcmd, userID] = args;
+
+  // validate data
+  if (!await validate(client, message, prefix, subcmd, userID)) return;
+
+  // add entry
+  const DBentry = await searchUser(userID);
+  // report to user if entry added
+  if (!DBentry) return messageFail(message, `No data found for the ID \`${userID}\`!`);
+  // get DoB
+  const DoB = DBentry.DoB;
+  // get age
+  const age = moment().diff(DoB, 'years');
+  // get user tags and format dates
+  const [userTag, teammemberTag] = [userID, DBentry.teammemberID].map((uID) => client.users.cache.find(({ id }) => id === uID).tag);
+  const [updatedAt, createdAt] = [DBentry.updatedAt, DBentry.createdAt].map((date) => moment(date).format('ddd, MMM Do YYYY, h:mm a'));
+  const formatDoB = moment(DoB).format('YYYY-MM-DD');
+  // send it
+  sendMessage(message.channel, userTag, userID, age, formatDoB, DBentry.allow, teammemberTag, updatedAt, createdAt);
 };
 
 module.exports.help = {
