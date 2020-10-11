@@ -19,7 +19,7 @@ module.exports = {
       allowNull: false,
     },
     points: {
-      type: Sequelize.TINYINT,
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
     createdAt: Sequelize.DATE,

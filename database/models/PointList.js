@@ -20,7 +20,7 @@ module.exports = sequelize.define('OfflineStat', {
     allowNull: false,
   },
   points: {
-    type: Sequelize.TINYINT,
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
 },

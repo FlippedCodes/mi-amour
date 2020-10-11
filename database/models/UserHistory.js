@@ -8,7 +8,6 @@ module.exports = sequelize.define('OfflineStat', {
   },
   pointsID: {
     type: Sequelize.INTEGER,
-    allowNull: false,
     references: {
       model: 'pointslist',
       key: 'ID',
@@ -19,6 +18,17 @@ module.exports = sequelize.define('OfflineStat', {
     allowNull: false,
     references: {
       model: 'userpoints',
+      key: 'ID',
+    },
+  },
+  currentPoints: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  punishmentTrigger: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: 'punishmentlevels',
       key: 'ID',
     },
   },

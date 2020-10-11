@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Ages', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('UserDoBs', {
     ID: {
       type: Sequelize.STRING(30),
       primaryKey: true,
@@ -8,7 +8,7 @@ module.exports = {
       type: Sequelize.DATE,
       allowNull: false,
     },
-    deny: {
+    allow: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false,
@@ -17,5 +17,5 @@ module.exports = {
     updatedAt: Sequelize.DATE,
   }),
 
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('Ages'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('UserDoBs'),
 };

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-module.exports = sequelize.define('Age', {
+module.exports = sequelize.define('UserDoB', {
   ID: {
     type: Sequelize.STRING(30),
     primaryKey: true,
@@ -9,7 +9,7 @@ module.exports = sequelize.define('Age', {
     type: Sequelize.DATE,
     allowNull: false,
   },
-  deny: {
+  allow: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: false,
