@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-const age = require('../database/models/Age');
+const userDoB = require('../database/models/UserDoB');
 
 const errHander = (err) => { console.error('ERROR:', err); };
 
@@ -20,8 +20,8 @@ function messageFail(message, body) {
 }
 
 async function addUser(userID, newDoB) {
-  if (await age.findOne({ where: { serverID: [serverID, managementServerID], tag } }).catch(errHander)) return false;
-  await age.findOrCreate({ where: { serverID, tag } }).catch(errHander);
+  if (await userDoB.findOne({ where: { serverID: [serverID, managementServerID], tag } }).catch(errHander)) return false;
+  await userDoB.findOrCreate({ where: { serverID, tag } }).catch(errHander);
   return true;
 }
 
@@ -83,5 +83,5 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
 
 module.exports.help = {
   name: 'CMD_nsfw_add',
-  parent: 'blacklist',
+  parent: 'nsfw',
 };
