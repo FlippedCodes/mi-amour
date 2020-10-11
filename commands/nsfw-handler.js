@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args, config, MessageEmbed) => {
     client.functions.get(`CMD_${currentCMD.name}_${subcmd}`)
       .run(client, message, args, config, MessageEmbed, config.prefix);
   } else {
-    messageFail(client, message, CommandUsage(config.prefix, currentCMD.name, commandValues.join('|')));
+    messageFail(message, CommandUsage(config.prefix, currentCMD.name, commandValues.join('|')));
   }
 };
 
