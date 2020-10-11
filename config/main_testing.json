@@ -77,5 +77,8 @@
     "info_channelID": "496948681656893440",
     "punnishments": {
         "pointLifetime": 20000
+    },
+    "DoBchecking": {
+        "dateFormats": ["YYYY-MM-DD", "MM/DD/YYYY"]
     }
 }
