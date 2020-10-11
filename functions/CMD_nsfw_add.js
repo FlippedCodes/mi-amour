@@ -27,7 +27,7 @@ async function addUser(ID, DoB, allow, teammemberID) {
 
 function checkAllowed(DoB) {
   const age = moment().diff(DoB, 'years');
-  return age >= 18;
+  return [age >= 18, age];
 }
 
 // validate provided info
@@ -40,22 +40,22 @@ async function validate(client, message, prefix, subcmd, userID, date) {
   }
   if (isNaN(userID)) {
     messageFail(message,
-      `Your provided ID is not a number!
+      `**Your provided ID is not a number!**
       Command usage: 
-      \`\`\`${prefix}${module.exports.help.parent} ${subcmd} USERID AGE\`\`\``);
+      \`\`\`${prefix}${module.exports.help.parent} ${subcmd} USERID DoB\`\`\``);
     return false;
   }
   const checkedUID = await client.functions.get('FUNC_checkID').run(userID, client, 'user');
   if (!checkedUID) {
     messageFail(message,
-      `Your provided ID is not from a user!
+      `**Your provided ID is not from a user!**
       Command usage: 
       \`\`\`${prefix}${module.exports.help.parent} ${subcmd} USERID DoB\`\`\``);
     return false;
   }
   if (!date.isValid()) {
     messageFail(message,
-      `Your provided DoB is not a date!
+      `**Your provided DoB is not a date!**
       Command usage: 
       \`\`\`${prefix}${module.exports.help.parent} ${subcmd} ${userID} DoB\`\`\``);
     return false;
@@ -64,28 +64,29 @@ async function validate(client, message, prefix, subcmd, userID, date) {
 }
 
 module.exports.run = async (client, message, args, config, MessageEmbed, prefix) => {
-  // check if user can manage servers
-  if (!message.member.hasPermission('MANAGE_GUILD')) return messageFail(message, 'You don\'t have access to this command! òwó');
   // split args
   const [subcmd, userID, newDoB] = args;
-
   // get date
   const date = moment(newDoB, config.DoBchecking.dateFormats, false);
 
+  // validate data
   if (!await validate(client, message, prefix, subcmd, userID, date)) return;
 
+  // get allow
+  const [allow, age] = checkAllowed(date);
+  // format date
+  const formatDate = date.format('YYYY-MM-DD');
   // add entry
-  const allow = checkAllowed(date);
-  // const added = await addUser(userID, newDoB);
-  messageSuccess(message, `DEBUG:
-  DoB: \`${newDoB}\`
-  parsedDoB: \`${date.toDate()}\`
-  Age: \`${allow}\``);
-  // if (added) {
-  //   messageSuccess(message, `\`${userID}\` has been added.`);
-  // } else {
-  //   messageFail(message, `\`${userID}\` is already added.`);
-  // }
+  const added = await addUser(userID, formatDate, allow, message.author.id);
+  // report to user if entry added
+  if (added) {
+    const userTag = await client.users.cache.find(({ id }) => id === userID).tag;
+    // send log and user confirmation
+    await client.functions.get('FUNC_richEmbedMessage_nsfw')
+      .run(message.channel, userTag, userID, age, formatDate, allow, message.author.tag, true, config);
+  } else {
+    messageFail(message, `\`${userID}\` is already added.`);
+  }
 };
 
 module.exports.help = {
