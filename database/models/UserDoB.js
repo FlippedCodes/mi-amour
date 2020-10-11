@@ -14,4 +14,5 @@ module.exports = sequelize.define('UserDoB', {
     allowNull: false,
     defaultValue: false,
   },
+  teammemberID: Sequelize.STRING(30),
 });

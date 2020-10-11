@@ -13,6 +13,7 @@ module.exports = {
       allowNull: false,
       defaultValue: false,
     },
+    teammemberID: Sequelize.STRING(30),
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE,
   }),
