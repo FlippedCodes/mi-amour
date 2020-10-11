@@ -19,14 +19,15 @@ function messageFail(message, body) {
     .then((msg) => msg.delete({ timeout: 10000 }));
 }
 
-async function addUser(userID, newDoB) {
-  if (await userDoB.findOne({ where: { serverID: [serverID, managementServerID], tag } }).catch(errHander)) return false;
-  await userDoB.findOrCreate({ where: { serverID, tag } }).catch(errHander);
+async function addUser(ID, DoB, allow, teammemberID) {
+  if (await userDoB.findOne({ where: { ID } }).catch(errHander)) return false;
+  await userDoB.findOrCreate({ where: { ID }, defaults: { DoB, allow, teammemberID } }).catch(errHander);
   return true;
 }
 
-function checkAge(newDoB) {
-  return moment().diff(newDoB, 'years');
+function checkAllowed(DoB) {
+  const age = moment().diff(DoB, 'years');
+  return age >= 18;
 }
 
 module.exports.run = async (client, message, args, config, MessageEmbed, prefix) => {
@@ -59,7 +60,7 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
       `Command usage: 
       \`\`\`${prefix}${module.exports.help.parent} ${subcmd} ${userID} DoB\`\`\``);
   }
-  const date = moment(newDoB, 'YYYY-MM-DD', true);
+  const date = moment(newDoB, config.DoBchecking.dateFormats, false);
   if (!date.isValid()) {
     return messageFail(message,
       `Your provided DoB is not a date!
@@ -68,12 +69,12 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
   }
 
   // add entry
-  const age = checkAge(newDoB);
+  const allow = checkAllowed(date);
   // const added = await addUser(userID, newDoB);
-  messageSuccess(message, `DEBUG: 
-  DoB: \`${newDoB}\`
-  parsedDoB: \`${date.toDate()}\`
-  Age: \`${age}\``);
+  // messageSuccess(message, `DEBUG:
+  // DoB: \`${newDoB}\`
+  // parsedDoB: \`${date.toDate()}\`
+  // Age: \`${allow}\``);
   // if (added) {
   //   messageSuccess(message, `\`${userID}\` has been added.`);
   // } else {
