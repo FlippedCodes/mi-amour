@@ -1,4 +1,4 @@
-const userDoB = require('../database/models/UserDoB');
+const userDoB = require('../../database/models/UserDoB');
 
 const errHander = (err) => { console.error('ERROR:', err); };
 
