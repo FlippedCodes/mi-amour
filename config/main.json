@@ -5,39 +5,48 @@
     "setup": {
         "logStatusChannel": "470889870160822273",
         "roleRequest": {
-            "channel": "669278640667623434",
-            "roles": {
-                "prey": {
+            "channelID": "669278640667623434",
+            "unique": [
+                ["prey", "pred", "switch"]
+            ],
+            "roles": [
+                {
                     "name": "Prey",
                     "roleID": "300980508899278848",
-                    "emoji": "🦌"
+                    "emoji": "🦌",
+                    "mature": false
                 },
-                "switch": {
+                {
                     "name": "Prey/Pred",
                     "roleID": "300980566386540544",
-                    "emoji": "🔄"
+                    "emoji": "🔄",
+                    "mature": false
                 },
-                "pred": {
+                {
                     "name": "Pred",
                     "roleID": "300980426548445186",
-                    "emoji": "🐉"
+                    "emoji": "🐉",
+                    "mature": false
                 },
-                "NSFW": {
+                {
                     "name": "NSFW Access",
                     "roleID": "573614662445301772",
-                    "emoji": "🔞"
+                    "emoji": "🔞",
+                    "mature": true
                 },
-                "NSFL": {
+                {
                     "name": "NSFL Access",
                     "roleID": "333646914757197824",
-                    "emoji": "💩"
+                    "emoji": "💩",
+                    "mature": true
                 },
-                "venting": {
+                {
                     "name": "Venting Access",
                     "roleID": "615218706657574952",
-                    "emoji": "💨"
+                    "emoji": "💨",
+                    "mature": true
                 }
-            }
+            ]
         },
         "moduleFolders": {
             "functionsFolder": "functions",
@@ -68,12 +77,6 @@
     "teamRole": "300661482830561281",
     "info_channelID": "496948681656893440",
     "punnishments": {
-        "halfLife": 20000,
-        "levels": {
-            "1": {
-                "name": "Warning",
-                "var": null
-            }
-        }
+        "pointLifetime": 20000
     }
 }
