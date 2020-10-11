@@ -44,6 +44,6 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
 };
 
 module.exports.help = {
-  name: 'CMD_nsfw_deny',
+  name: 'CMD_nsfw_allow',
   parent: 'nsfw',
 };
