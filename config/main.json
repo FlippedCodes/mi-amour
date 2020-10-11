@@ -72,6 +72,7 @@
         "pointLifetime": 20000
     },
     "DoBchecking": {
-        "dateFormats": ["YYYY-MM-DD", "MM/DD/YYYY"]
+        "dateFormats": ["YYYY-MM-DD", "MM/DD/YYYY"],
+        "logChannelID": "574178926985740288"
     }
 }
