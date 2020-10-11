@@ -12,10 +12,13 @@ if (fs.existsSync('./config/config.json')) {
 }
 
 module.exports.run = async (client, message, args, config) => {
+  // FIXME: check if working
   if (!config.env.get('isTeam')) return message.react('❌');
 
   let [userID] = args;
   if (!userID) userID = message.author.id;
+
+  // TODO: add punishments at the end
 
   const embed = new MessageEmbed().setColor(message.member.displayColor);
   const discordUser = await client.users.fetch(userID, false)
