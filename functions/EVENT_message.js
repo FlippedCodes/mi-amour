@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js');
+
 module.exports.run = async (client, message, config) => {
   // return if unwanted
   if (message.author.bot) return;
@@ -24,7 +26,7 @@ module.exports.run = async (client, message, config) => {
 
   // run cmd if existent
   if (cmd) {
-    cmd.run(client, message, args, config)
+    cmd.run(client, message, args, config, MessageEmbed)
       .catch(console.log);
   }
 };
