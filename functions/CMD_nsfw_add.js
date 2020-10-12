@@ -103,7 +103,8 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
     // send log and user confirmation
     sendMessage(MessageEmbed, message.channel, userTag, userID, age, formatDate, allow, message.author.tag, config);
   } else {
-    messageFail(message, `\`${userID}\` is already added.`);
+    messageFail(message, `\`${userID}\` is already exists. Lemme update that your you instead! ^^`);
+    client.functions.get('CMD_nsfw_change').run(client, message, args, config, MessageEmbed, prefix);
   }
 };
 

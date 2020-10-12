@@ -40,7 +40,8 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
     // remove NSFW roles
     if (!allow) client.functions.get('FUNC_userRemoveNsfwRoles').run(userID, message.guild, config.setup.roleRequest.roles);
   } else {
-    messageFail(message, `\`${tag}\` is already added to thwis serwers backlist.`);
+    messageFail(message, `\`${userID}\` hasn't been added yet. I'll do that for you! ^^`);
+    client.functions.get('CMD_nsfw_add').run(client, message, args, config, MessageEmbed, prefix);
   }
 };
 
