@@ -4,11 +4,28 @@ const userDoB = require('../database/models/UserDoB');
 
 const errHander = (err) => { console.error('ERROR:', err); };
 
-// creates a embed messagetemplate for succeded actions
-function messageSuccess(message, body) {
-  const client = message.client;
-  client.functions.get('FUNC_MessageEmbedMessage')
-    .run(client.user, message.channel, body, '', 4296754, false);
+function sendMessage(MessageEmbed, channel, userTag, userID, age, DoB, allow, teammemberTag, config) {
+  // needs to be local as settings overlap from different embed-requests
+  const embed = new MessageEmbed();
+
+  let color = 16741376;
+  if (allow) color = 4296754;
+
+  embed
+    .setColor(color)
+    .setDescription(`${userTag} got added to the DB!`)
+    .addFields([
+      { name: 'ID', value: userID, inline: true },
+      { name: 'Age', value: age, inline: true },
+      { name: 'DoB', value: DoB, inline: true },
+      { name: 'Allow', value: allow, inline: true },
+      { name: 'Created by', value: teammemberTag, inline: true },
+    ]);
+
+  // send feedback
+  channel.send(embed);
+  // send in log
+  channel.guild.channels.cache.find(({ id }) => id === config.DoBchecking.logChannelID).send(embed);
 }
 
 // creates a embed messagetemplate for failed actions
@@ -82,8 +99,7 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
   if (added) {
     const userTag = await client.users.cache.find(({ id }) => id === userID).tag;
     // send log and user confirmation
-    await client.functions.get('FUNC_richEmbedMessage_nsfw')
-      .run(message.channel, userTag, userID, age, formatDate, allow, message.author.tag, true, config);
+    sendMessage(MessageEmbed, message.channel, userTag, userID, age, formatDate, allow, message.author.tag, config);
   } else {
     messageFail(message, `\`${userID}\` is already added.`);
   }
