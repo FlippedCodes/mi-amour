@@ -97,6 +97,8 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
   const added = await addUser(userID, formatDate, allow, message.author.id);
   // report to user if entry added
   if (added) {
+    // remove NSFW roles
+    if (!allow) client.functions.get('FUNC_userRemoveNsfwRoles').run(userID, message.guild, config.setup.roleRequest.roles);
     const userTag = await client.users.cache.find(({ id }) => id === userID).tag;
     // send log and user confirmation
     sendMessage(MessageEmbed, message.channel, userTag, userID, age, formatDate, allow, message.author.tag, config);

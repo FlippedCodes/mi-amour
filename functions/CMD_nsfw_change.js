@@ -37,7 +37,8 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
   }
   const added = await addTag(tag, message.guild.id, config.managementServerID);
   if (added) {
-    messageSuccess(message, `\`${tag}\` has been added to the serwers blacklist.`);
+    // remove NSFW roles
+    if (!allow) client.functions.get('FUNC_userRemoveNsfwRoles').run(userID, message.guild, config.setup.roleRequest.roles);
   } else {
     messageFail(message, `\`${tag}\` is already added to thwis serwers backlist.`);
   }
