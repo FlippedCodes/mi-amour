@@ -1,5 +1,3 @@
-const { MessageEmbed } = require('discord.js');
-
 const moment = require('moment');
 
 const userDoB = require('../database/models/UserDoB');
@@ -45,7 +43,7 @@ async function validate(client, message, prefix, subcmd, userID) {
   return true;
 }
 
-function sendMessage(channel, userTag, userID, age, DoB, allow, teammemberTag, updated, created) {
+function sendMessage(MessageEmbed, channel, userTag, userID, age, DoB, allow, teammemberTag, updated, created) {
   let color = 16741376;
   if (allow) color = 4296754;
 
@@ -73,7 +71,7 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
   // validate data
   if (!await validate(client, message, prefix, subcmd, userID)) return;
 
-  // add entry
+  // search entry
   const DBentry = await searchUser(userID);
   // report to user if entry added
   if (!DBentry) return messageFail(message, `No data found for the ID \`${userID}\`!`);
@@ -86,7 +84,7 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
   const [updatedAt, createdAt] = [DBentry.updatedAt, DBentry.createdAt].map((date) => moment(date).format('ddd, MMM Do YYYY, h:mm a'));
   const formatDoB = moment(DoB).format('YYYY-MM-DD');
   // send it
-  sendMessage(message.channel, userTag, userID, age, formatDoB, DBentry.allow, teammemberTag, updatedAt, createdAt);
+  sendMessage(MessageEmbed, message.channel, userTag, userID, age, formatDoB, DBentry.allow, teammemberTag, updatedAt, createdAt);
 };
 
 module.exports.help = {
