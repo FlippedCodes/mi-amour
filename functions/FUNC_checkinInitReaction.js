@@ -54,6 +54,7 @@ function createChannel(guild, user, config, topic) {
 module.exports.run = async (client, reaction, config) => {
   // check emoji and channel
   const configReaction = config.checkin.reaction;
+  if (reaction.member.roles.length !== 1) return;
   if (reaction.channel_id !== configReaction.channel) return;
   if (reaction.message_id !== configReaction.message) return;
   if (reaction.emoji.name !== configReaction.emoji) return;
