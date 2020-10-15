@@ -24,8 +24,8 @@ async function addTag(tag, serverID, managementServerID) {
 }
 
 module.exports.run = async (client, message, args, config, MessageEmbed, prefix) => {
-  // check if user can manage servers
-  if (!message.member.hasPermission('MANAGE_GUILD')) return messageFail(message, 'You dwon\'t hawe access to thwis command òwó');
+  // check if user is teammember
+  if (!message.member.roles.cache.find(({ id }) => id === config.teamRole)) return messageFail(message, 'You don\'t have access to this command! òwó');
   const [subcmd, tag] = args;
   if (!tag) {
     return messageFail(message,
