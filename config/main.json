@@ -79,6 +79,7 @@
     "disboard": {
         "channelID": "782260178925387786",
         "userID": "302050872383242240",
-        "lastBoostedRoleID": "783082303478825001"
+        "lastBoostedRoleID": "783082303478825001",
+        "successfulHex": "#24b7b7"
     }
 }
