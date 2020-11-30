@@ -80,5 +80,9 @@
     "DoBchecking": {
         "dateFormats": ["YYYY-MM-DD", "MM/DD/YYYY"],
         "logChannelID": "574683139943825418"
+    },
+    "disboard": {
+        "channelID": "782260178925387786",
+        "lastBoostedRoleID": "783082303478825001"
     }
 }
