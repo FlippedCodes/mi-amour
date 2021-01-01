@@ -37,6 +37,12 @@
                     "roleID": "333646914757197824",
                     "emoji": "💩",
                     "mature": true
+                },
+                {
+                    "name": "Notifications Role",
+                    "roleID": "794658961076125726",
+                    "emoji": "💩",
+                    "mature": false
                 }
             ]
         },
