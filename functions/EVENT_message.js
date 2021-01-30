@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (client, message, config) => {
   // non command function: disboard boost
-  client.functions.get('FUNC_disboardBoost').run(client, message, config);
+  // client.functions.get('FUNC_disboardBoost').run(client, message, config);
 
   // return if unwanted
   if (message.author.bot) return;
