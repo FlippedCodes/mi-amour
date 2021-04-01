@@ -1,13 +1,8 @@
-module.exports.run = async (client, config) => {
-  if (!config.env.get('inDev')) {
-    console.log(`[${module.exports.help.name}] Setting status...`);
-  } else return console.log(`[${module.exports.help.name}] Bot is in debugging-mode and will post the bot status-message`);
-  client.user.setStatus('online');
-  const membercount = client.guilds.cache.reduce((previousCount, currentGuild) => previousCount + currentGuild.memberCount, 0);
-  client.user.setActivity(`${membercount} members in VoreNetwork`, { type: 'WATCHING' })
-    .then(() => console.log(`[${module.exports.help.name}] Status set!`));
+module.exports.run = async (message, im) => {
+  const parsed = message.content.slice(im.length + 1);
+  message.channel.send(`Hey ${parsed}, I'm dad!`);
 };
 
 module.exports.help = {
-  name: 'SETUP_status',
+  name: 'FUNC_april',
 };
