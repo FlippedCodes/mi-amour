@@ -15,15 +15,6 @@ module.exports.run = async (client, message, config) => {
   // non command function: checkin complete questioning Reaction adding
   client.functions.get('FUNC_checkinPostReaction').run(client, message, config);
 
-  if (message.guild.id === '300051375914483715') {
-    const msg = message.content.toLowerCase();
-    if (msg.startsWith('im')) client.functions.get('FUNC_april').run(message, 'im');
-    if (msg.startsWith('i`m')) client.functions.get('FUNC_april').run(message, 'i`m');
-    if (msg.startsWith('i\'m')) client.functions.get('FUNC_april').run(message, 'i\'m');
-    if (msg.startsWith('l`m')) client.functions.get('FUNC_april').run(message, 'l`m');
-    if (msg.startsWith('l\'m')) client.functions.get('FUNC_april').run(message, 'l\'m');
-  }
-
   // put comamnd in array
   const messageArray = message.content.split(/\s+/g);
   const command = messageArray[0];
