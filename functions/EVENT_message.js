@@ -20,6 +20,9 @@ module.exports.run = async (client, message, config) => {
     if (msg.startsWith('im')) client.functions.get('FUNC_april').run(message, 'im');
     if (msg.startsWith('i`m')) client.functions.get('FUNC_april').run(message, 'i`m');
     if (msg.startsWith('i\'m')) client.functions.get('FUNC_april').run(message, 'i\'m');
+    if (msg.startsWith('l`m')) client.functions.get('FUNC_april').run(message, 'l`m');
+    if (msg.startsWith('l\'m')) client.functions.get('FUNC_april').run(message, 'l\'m');
+    if (msg.startsWith('lm')) client.functions.get('FUNC_april').run(message, 'lm');
   }
 
   // put comamnd in array
