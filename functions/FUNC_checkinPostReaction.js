@@ -5,7 +5,7 @@ module.exports.run = async (client, message, config) => {
     await message.react('✋');
     client.functions.get('FUNC_MessageEmbedMessage')
       .run(null, message.channel,
-        'Please wait for a teammember to review your awnsers.',
+        'Please wait for a teammember to review your answers.',
         null, 4296754, false);
   }
 };
