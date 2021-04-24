@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+  bot:
+    build:
+      context: ./
+    depends_on:
+      - db
+    restart: always
+    environment:
+      BotToken: ${DISCORD_BOT_TOKEN}
+      DBHost: db
+      DBName: gurglebot
+      DB_user: gurglebot
+      DBPassw: ${DB_PASSWORD}
+
+  db:
+    image: mariadb:latest
+    restart: always
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD_ROOT}
+      MYSQL_DATABASE: gurglebot
+      MYSQL_USER: gurglebot
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+volumes:
+  db_data:
