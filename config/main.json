@@ -69,6 +69,7 @@
         },
         "categoryID": "750432209420156968",
         "welcomeChannel": "496962434917990410",
+        "archiveChannel": "864936989400236072",
         "checkinRole": "345333709391659009"
     },
     "aboutText": "./config/about.txt",

@@ -21,6 +21,7 @@ module.exports.run = async (client, reaction, user, config) => {
       .then((msg) => msg.delete({ timeout: 10000 }));
     return;
   }
+  await client.functions.get('FUNC_transcriptChannel').run(reaction.message.channel, config);
   switch (reaction.emoji.name) {
     case '👌':
       // add role

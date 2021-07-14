@@ -66,8 +66,9 @@
             "message": "496985167160672267",
             "emoji": "👌"
         },
-        "categoryID": "665928850366005248",
+        "categoryID": "864940120800493618",
         "welcomeChannel": "496962434917990410",
+        "archiveChannel": "864936989400236072",
         "checkinRole": "345333709391659009"
     },
     "aboutText": "./config/about.txt",
