@@ -1,6 +1,5 @@
 **Changelog:**
-* Start of recode:
-  + added
+* added transcript for checkin channels
 
 **Plannings:**
 + add CMD overview will get added
