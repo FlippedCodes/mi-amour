@@ -27,7 +27,7 @@ module.exports.run = async (client, reaction, user, config) => {
       reaction.message.member.roles.add(config.checkin.checkinRole);
       // post welcome message
       const welcomeChannel = member.guild.channels.cache.get(config.checkin.welcomeChannel);
-      welcomeChannel.send(`${reaction.message.author}, you are checked-in now!\nHave a great time on the server! :3`);
+      welcomeChannel.send(`${reaction.message.author}, you are checked-in now!\nYou can check out some roles in <#669278640667623434>!\nHave a great time on the server! :3`);
       // delete channel
       reaction.message.channel.delete();
       return;
