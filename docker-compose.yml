@@ -1,18 +1,18 @@
 version: '3.3'
 services:
-  bot_gB:
+  bot_gb:
     build:
       context: ./
     depends_on:
-      - db_gB
+      - db_gb
     restart: always
     environment:
       BotToken: ${DISCORD_BOT_TOKEN}
-      DBHost: db_gB
+      DBHost: db_gb
       DBName: gurglebot
       DB_user: gurglebot
       DBPassw: ${DB_PASSWORD}
-  db_gB:
+  db_gb:
     image: mariadb:latest
     restart: always
     ports:
