@@ -12,27 +12,6 @@ Before we let you in im going to ask you some questions, before a staff member i
 When you are done please ping/mention \`@Team\`, so we know that you are done and ready to be reviewd.
 `;
 
-// async function getWelcomeMessage(config, user) {
-//   const fs = require('fs');
-//   const message = `
-//   Hey there! Welcome to TDM
-//   `;
-//   // let message;
-//   // await new Promise((resolve) => {
-//   //   fs.readFile('./config/about.txt', 'utf8', (err, data) => {
-//   //     if (err) {
-//   //       errHander(err);
-//   //       message = `I'm sowwy, but something went wrong setting up your welcome message, <@${user.id}>. A team member is going to assist you with this.
-
-//   //       ~~<@&${config.teamRole}>, pls fix~~`;
-//   //       return;
-//   //     }
-//   //     message = data;
-//   //   });
-//   // });
-//   return message;
-// }
-
 // calculate user creation
 function calcUserAge(user) {
   const currentDate = new Date();
