@@ -62,13 +62,13 @@
     },
     "checkin": {
         "reaction": {
-            "channel": "496948681656893440",
-            "message": "496985167160672267",
-            "emoji": "👌"
+            "channel": "455334868788969473",
+            "message": "884000367178833950",
+            "emoji": "😂"
         },
-        "categoryID": "864940120800493618",
+        "categoryID": "883999192316538930",
         "welcomeChannel": "496962434917990410",
-        "archiveChannel": "864936989400236072",
+        "archiveChannel": "496957983973179392",
         "checkinRole": "345333709391659009"
     },
     "aboutText": "./config/about.txt",
