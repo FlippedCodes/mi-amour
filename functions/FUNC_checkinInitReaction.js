@@ -7,6 +7,7 @@ Before we let you in im going to ask you some questions, before a staff member i
 :one: - How did you find our server?
 :two: - Are you on any other vore servers?
 :three: - Do you like vore and what is your favorite?
+:four: - What is your DoB (date of birth) - (YYYY-MM-DD)?
 
 When you are done please ping/mention \`@Team\`, so we know that you are done and ready to be reviewd.
 `;
