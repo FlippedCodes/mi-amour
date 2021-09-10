@@ -13,6 +13,7 @@ async function getDate(channel) {
   if (!found.size) return;
   const coreMessage = found.entries().next().value[1].content;
   const rawDate = coreMessage.match(dateRegEx);
+  console.log(rawDate);
   return moment(rawDate, true);
 }
 
@@ -40,6 +41,7 @@ module.exports.run = async (client, message, config) => {
     if (await searchUser(message.author.id)) await message.react('🔍');
     else {
       const date = await getDate(message.channel);
+      await console.log('Parsed: ', date);
       if (!date || !date.isValid()) return message.react('❓');
       // add entry
       await addUser(message.author.id, date.format('YYYY-MM-DD'), false, client.user.id);
