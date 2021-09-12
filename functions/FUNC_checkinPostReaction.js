@@ -12,7 +12,7 @@ async function getDate(channel) {
   const found = await messages.filter((msg) => msg.content.match(dateRegEx) && msg.author.id === channel.name);
   if (!found.size) return;
   const coreMessage = found.entries().next().value[1].content;
-  const rawDate = coreMessage.match(dateRegEx);
+  const rawDate = coreMessage.match(dateRegEx)[0];
   return moment(rawDate, true);
 }
 
