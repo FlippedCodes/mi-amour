@@ -22,11 +22,9 @@ function calcUserAge(user) {
 }
 
 function createChannel(guild, user, config, topic) {
-  guild.channels.create(user.id, { type: 'text' })
-    .then((channel) => channel.setParent(config.checkin.categoryID))
+  guild.channels.create(user.id, { type: 'text', topic, parent: config.checkin.categoryID })
     .then((channel) => channel.lockPermissions())
     .then((channel) => channel.createOverwrite(user, { VIEW_CHANNEL: true }))
-    .then((channel) => channel.setTopic(topic))
     .then(async (channel) => channel.send(welcomeMessage(user.id)))
     .catch(errHander);
 }
