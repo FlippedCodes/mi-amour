@@ -4,7 +4,7 @@ const userDoB = require('../database/models/UserDoB');
 
 const errHander = (err) => { console.error('ERROR:', err); };
 
-async function getDate(channel) {
+async function getDate(channel, config) {
   // get all messages
   const messages = await channel.messages.fetch();
   // match date
@@ -13,7 +13,7 @@ async function getDate(channel) {
   if (!found.size) return;
   const coreMessage = found.entries().next().value[1].content;
   const rawDate = coreMessage.match(dateRegEx)[0];
-  return moment(rawDate, true);
+  return moment(rawDate, config.DoBchecking.dateFormats, true);
 }
 
 async function searchUser(ID) {
@@ -39,7 +39,7 @@ module.exports.run = async (client, message, config) => {
         null, 4296754, false);
     if (await searchUser(message.author.id)) await message.react('🔍');
     else {
-      const date = await getDate(message.channel);
+      const date = await getDate(message.channel, config);
       if (!date || !date.isValid()) return message.react('❓');
       // add entry
       await addUser(message.author.id, date.format('YYYY-MM-DD'), false, client.user.id);
