@@ -70,8 +70,7 @@
         "categoryID": "750432209420156968",
         "welcomeChannel": "496962434917990410",
         "archiveChannel": "864936989400236072",
-        "checkinRole": "345333709391659009",
-        "dateRegEx": "/\\d{4}[-]\\d{2}[-]\\d{2}/gm;"
+        "checkinRole": "345333709391659009"
     },
     "aboutText": "./config/about.txt",
     "teamRole": "300661482830561281",
