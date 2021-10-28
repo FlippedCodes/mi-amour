@@ -39,6 +39,12 @@
                     "mature": true
                 },
                 {
+                    "name": "Vent Access",
+                    "roleID": "615218706657574952",
+                    "emoji": "💨",
+                    "mature": true
+                },
+                {
                     "name": "Notifications Role",
                     "roleID": "794658961076125726",
                     "emoji": "📬",
