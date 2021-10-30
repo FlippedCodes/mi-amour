@@ -32,10 +32,10 @@ module.exports.run = async (client, config) => {
   setInterval(async () => {
     // loop db update in 5 sec intervall
     const [offlineStat] = await OfflineStat.findOrCreate({
-      where: { ID: 1 }, defaults: { time: startupTime },
+      where: { ID: 3 }, defaults: { time: startupTime },
     }).catch(errHander);
     if (!offlineStat.isNewRecord) {
-      OfflineStat.update({ time: +new Date() }, { where: { ID: 1 } }).catch(errHander);
+      OfflineStat.update({ time: +new Date() }, { where: { ID: 3 } }).catch(errHander);
     }
   }, 1 * 5000);
 };
