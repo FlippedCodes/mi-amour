@@ -42,9 +42,9 @@ async function updateUser(ID, DoB, allow, teammemberID) {
   return true;
 }
 
-function checkAllowed(DoB) {
+function getAge(moment, DoB) {
   const age = moment().diff(DoB, 'years');
-  return [age >= 18, age];
+  return age;
 }
 
 // validate provided info
@@ -90,7 +90,8 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
   if (!await validate(client, message, prefix, subcmd, userID, date)) return;
 
   // get allow
-  const [allow, age] = checkAllowed(date);
+  const age = getAge(moment, date);
+  const allow = false;
   // format date
   const formatDate = date.format('YYYY-MM-DD');
   // add entry
