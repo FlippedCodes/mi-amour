@@ -1,72 +1,106 @@
 // init Discord
-const Discord = require('discord.js');
-// init Discord client
-const client = new Discord.Client({ disableEveryone: true });
-// init sequelize
-// const sequelize = require('sequelize');
-// init filesystem
+const { Client, IntentsBitField, Collection } = require('discord.js');
+// init file system
 const fs = require('fs');
-// init correct config
-const inDev = fs.existsSync('./config/config.json');
-let config;
-if (inDev) config = require('./config/main_testing.json');
-else config = require('./config/main.json');
+// init command builder
+const { SlashCommandBuilder } = require('@discordjs/builders');
+// use contructor to create intent bit field
+const intents = new IntentsBitField([
+  IntentsBitField.Flags.DirectMessages,
+  IntentsBitField.Flags.Guilds,
+  IntentsBitField.Flags.GuildMessages,
+  IntentsBitField.Flags.GuildMessageReactions,
+  IntentsBitField.Flags.GuildMembers,
+  IntentsBitField.Flags.MessageContent,
+]);
+// setting essential global values
+// init Discord client
+global.client = new Client({ disableEveryone: true, intents });
+// init config
+global.config = require('./config.json');
 
-// get language file
-require('./lang/SETUP_langFile');
+global.DEBUG = process.env.NODE_ENV === 'development';
 
-// create new collections in client and config
-client.functions = new Discord.Collection();
-client.commands = new Discord.Collection();
-config.env = new Discord.Collection();
+// global.main = {};
+global.CmdBuilder = SlashCommandBuilder;
 
-// load Functions and Commands
-config.setup.startupFunctions.forEach((FCN) => {
-  let INIT = require(`./functions/${FCN}.js`);
-  INIT.run(client, fs, config, inDev);
-});
+global.ERR = (err) => {
+  console.error('ERROR:', err);
+  if (DEBUG) return;
+  const { EmbedBuilder } = require('discord.js');
+  const embed = new EmbedBuilder()
+    .setAuthor({ name: `Error: '${err.message}'` })
+    .setDescription(`STACKTRACE:\n\`\`\`${err.stack.slice(0, 4000)}\`\`\``)
+    .setColor(16449540);
+  client.channels.cache.get(config.setup.logStatusChannel).send({ embeds: [embed] });
+  return;
+};
 
-// create conenction to DB
-require('./database/SETUP_DBConnection');
+// creating collections
+client.commands = new Collection();
+client.functions = new Collection();
+
+// anouncing debug mode
+if (DEBUG) console.log(`[${config.name}] Bot is on Debug-Mode. Some functions are not going to be loaded.`);
 
 // Login the bot
-client.login(config.env.get('token'));
+client.login(process.env.DCtoken)
+  .then(() => {
+    // import Functions and Commands; startup database connection
+    fs.readdirSync('./functions/STARTUP').forEach((FCN) => {
+      if (FCN.search('.js') === -1) return;
+      const INIT = require(`./functions/STARTUP/${FCN}`);
+      INIT.run(fs);
+    });
+  });
 
-client.once('ready', async () => {
+client.on('ready', async () => {
   // confirm user logged in
-  console.log(lang.log_event_ready_loggedInUser({
-    functionName: config.name,
-    userName: client.user.tag,
-  }));
-  // set bot player status
+  console.log(`[${config.name}] Logged in as "${client.user.tag}"!`);
+
+  // setup tables
+  console.log('[DB] Syncing tables...');
+  await sequelize.sync();
+  await console.log('[DB] Done syncing!');
+
+  // set bot user status
+  // const setupFunctions = client.functions.filter((fcn) => fcn.data.callOn === 'setup');
+  // setupFunctions.forEach((FCN) => FCN.run());
+
+  // run setup functions
   config.setup.setupFunctions.forEach((FCN) => {
-    client.functions.get(FCN).run(client, config);
+    client.functions.get(FCN).run();
   });
 });
 
-client.on('message', async (message) => {
-  client.functions.get('EVENT_message').run(client, message, config);
+client.on('interactionCreate', async (interaction) => {
+  // command handler
+  if (interaction.isCommand()) {
+    const command = client.commands.get(interaction.commandName);
+    if (command) return command.run(interaction).catch(console.log);
+  }
 });
 
-client.on('guildMemberRemove', async (member) => {
-  client.functions.get('EVENT_guildMemberRemove').run(client, member, config);
+client.on('messageCreate', (message) => {
+  client.functions.get('EVENT_message').run(message).catch(ERR);
 });
 
-client.on('messageReactionAdd', async (reaction, user) => {
-  client.functions.get('EVENT_messageReactionAdd').run(client, reaction, user, config);
+client.on('guildMemberRemove', (member) => {
+  client.functions.get('EVENT_guildMemberRemove').run(member).catch(ERR);
 });
 
-client.on('messageReactionRemove', async (reaction, user) => {
-  client.functions.get('EVENT_messageReactionRemove').run(client, reaction, user, config);
+client.on('messageReactionAdd', (reaction, user) => {
+  client.functions.get('EVENT_messageReactionAdd').run(reaction, user).catch(ERR);
 });
 
 // trigger on reaction with raw package
 client.on('raw', async (packet) => {
   if (packet.t === 'MESSAGE_REACTION_ADD' && packet.d.guild_id) {
-    client.functions.get('FUNC_checkinInitReaction').run(client, packet.d, config);
+    client.functions.get('ENGINE_checkin_initReaction').run(packet.d).catch(ERR);
   }
 });
 
-// logging errors
+// logging errors and warns
 client.on('error', (e) => console.error(e));
 client.on('warn', (e) => console.warn(e));
+process.on('uncaughtException', (ERR));
