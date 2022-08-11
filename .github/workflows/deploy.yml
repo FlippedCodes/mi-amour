@@ -11,11 +11,6 @@ jobs:
   build:
     runs-on: mainserverJulian
 
-    # strategy:
-    #   matrix:
-    #     node-version: [12.x]
-    #     # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     env:
       DB_PORT: ${{ secrets.DB_PORT }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
@@ -25,23 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - name: Use Node.js ${{ matrix.node-version }}
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: ${{ matrix.node-version }}
-
       - name: Update 3rd party docker containers
         run: docker-compose pull
 
       - name: Build app
         run: docker-compose build
-
-      # - name: Spin up DB
-      #   run: docker-compose up -d db
-
-      # - name: Update DB structure
-      #   run: npm i sequelize-cli
-      #   run: sequelize db:migrate
 
       - name: Spin up containers
         run: docker-compose up -d
