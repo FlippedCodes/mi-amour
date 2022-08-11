@@ -18,12 +18,15 @@
   },
   "homepage": "https://github.com/FlipperLP/gurglebot#readme",
   "dependencies": {
+    "@discordjs/builders": "^1.1.0",
+    "bufferutil": "^4.0.6",
     "discord.js": "^14.2.0",
     "jsdom": "^20.0.0",
     "moment": "^2.29.4",
     "mysql2": "^2.3.3",
     "pretty-ms": "^8.0.0",
-    "sequelize": "^6.21.3"
+    "sequelize": "^6.21.3",
+    "utf-8-validate": "^5.0.9"
   },
   "devDependencies": {
     "eslint": "^8.21.0",
