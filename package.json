@@ -1,7 +1,7 @@
 {
   "name": "gurglebot",
-  "version": "2.3.0",
-  "description": "Rewrite of the orginal mawbot for the TDM-Network.",
+  "version": "2.4.0",
+  "description": "Rewrite of the orginal mawbot for the TDM-Network. .",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -18,19 +18,16 @@
   },
   "homepage": "https://github.com/FlipperLP/gurglebot#readme",
   "dependencies": {
-    "discord.js": "^12.3.1",
-    "handlebars": "^4.7.7",
-    "jsdom": "^16.6.0",
-    "moment": "^2.29.1",
-    "mysql2": "^2.2.5",
-    "pretty-ms": "^5.1.0",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.6",
-    "sequelize": "^5.22.3"
+    "discord.js": "^14.2.0",
+    "jsdom": "^20.0.0",
+    "moment": "^2.29.4",
+    "mysql2": "^2.3.3",
+    "pretty-ms": "^8.0.0",
+    "sequelize": "^6.21.3"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint": "^8.21.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
   }
 }
