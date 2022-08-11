@@ -1,9 +1,0 @@
-**Changelog:**
-* added transcript for checkin channels
-
-**Plannings:**
-+ add CMD overview will get added
-+ add help for every CMD for better user end experience
-+ add Better message displayment
-+ ~~add autoassign for rejoining user (except for muted users)~~
-* code for own RP will be redone
