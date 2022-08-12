@@ -4,9 +4,9 @@ const userDoB = require('../database/models/UserDoB');
 
 const errHander = (err) => { console.error('ERROR:', err); };
 
-function sendMessage(MessageEmbed, channel, userTag, userID, age, DoB, allow, teammemberTag, config) {
+function sendMessage(EmbedBuilder, channel, userTag, userID, age, DoB, allow, teammemberTag, config) {
   // needs to be local as settings overlap from different embed-requests
-  const embed = new MessageEmbed();
+  const embed = new EmbedBuilder();
 
   let color = 16741376;
   if (allow) color = 4296754;
@@ -31,7 +31,7 @@ function sendMessage(MessageEmbed, channel, userTag, userID, age, DoB, allow, te
 // creates a embed messagetemplate for failed actions
 function messageFail(message, body) {
   const client = message.client;
-  client.functions.get('FUNC_MessageEmbedMessage')
+  client.functions.get('FUNC_EmbedBuilderMessage')
     .run(client.user, message.channel, body, '', 16449540, false)
     .then((msg) => msg.delete({ timeout: 10000 }));
 }
@@ -80,7 +80,7 @@ async function validate(client, message, prefix, subcmd, userID, date) {
   return true;
 }
 
-module.exports.run = async (client, message, args, config, MessageEmbed, prefix) => {
+module.exports.run = async (client, message, args, config, EmbedBuilder, prefix) => {
   // split args
   const [subcmd, userID, newDoB] = args;
   // get date
@@ -102,10 +102,10 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
     if (!allow) client.functions.get('FUNC_userRemoveNsfwRoles').run(userID, message.guild, config.setup.roleRequest.roles);
     const userTag = await client.users.cache.find(({ id }) => id === userID).tag;
     // send log and user confirmation
-    sendMessage(MessageEmbed, message.channel, userTag, userID, age, formatDate, allow, message.author.tag, config);
+    sendMessage(EmbedBuilder, message.channel, userTag, userID, age, formatDate, allow, message.author.tag, config);
   } else {
     messageFail(message, `\`${userID}\` hasn't been added yet. I'll do that for you! ^^`);
-    client.functions.get('CMD_nsfw_add').run(client, message, args, config, MessageEmbed, prefix);
+    client.functions.get('CMD_nsfw_add').run(client, message, args, config, EmbedBuilder, prefix);
   }
 };
 

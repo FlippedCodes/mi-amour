@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(channel, body) {
@@ -44,7 +44,7 @@ module.exports.run = async (reaction, user) => {
       return;
 
     case '🔍':
-      client.functions.get('ENGINE_nsfw_search').run(reaction.message, MessageEmbed, reaction.message.author.id);
+      client.functions.get('ENGINE_nsfw_search').run(reaction.message, EmbedBuilder, reaction.message.author.id);
       return;
 
     case '❓':
@@ -53,7 +53,7 @@ module.exports.run = async (reaction, user) => {
 
     case '✅':
       messageSuccess(reaction.message.channel, 'DoB parsed successfully and nsfw entry got created');
-      client.functions.get('ENGINE_nsfw_search').run(reaction.message, MessageEmbed, reaction.message.author.id);
+      client.functions.get('ENGINE_nsfw_search').run(reaction.message, EmbedBuilder, reaction.message.author.id);
       return;
 
     default:

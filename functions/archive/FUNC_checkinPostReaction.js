@@ -33,7 +33,7 @@ module.exports.run = async (client, message, config) => {
   && message.channel.parentID === config.checkin.categoryID) {
     await message.react('👌');
     await message.react('✋');
-    client.functions.get('FUNC_MessageEmbedMessage')
+    client.functions.get('FUNC_EmbedBuilderMessage')
       .run(null, message.channel,
         'Please wait for a teammember to review your answers.',
         null, 4296754, false);

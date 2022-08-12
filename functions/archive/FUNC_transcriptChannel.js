@@ -77,7 +77,7 @@ module.exports.run = async (channel, config) => {
   });
   const archive = channel.guild.channels.cache.get(config.checkin.archiveChannel);
   archive.send({
-    embed: new discord.MessageEmbed().setTitle(channel.name),
+    embed: new discord.EmbedBuilder().setTitle(channel.name),
     files: [{
       attachment: './cache/index.html',
       name: `${channel.name}.html`,

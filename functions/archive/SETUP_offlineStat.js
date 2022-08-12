@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 const toTime = require('pretty-ms');
 
@@ -14,7 +14,7 @@ module.exports.run = async (client, config) => {
   if (!config.env.get('inDev')) {
     console.log(lang.log_function_SETUP_offlineStat_postingStatusMessage({ functionName: module.exports.help.name }));
   } else return console.log(lang.log_function_SETUP_offlineStat_warn_debugMode({ functionName: module.exports.help.name }));
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(lang.chat_function_SETUP_offlineStat_embed_title())
     .setColor(4296754)
     .setFooter(client.user.tag, client.user.displayAvatarURL)

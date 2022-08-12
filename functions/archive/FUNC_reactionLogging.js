@@ -1,7 +1,7 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports.run = async (action, client, reaction, user, config) => {
-  const embed = new MessageEmbed()
+  const embed = new EmbedBuilder()
     .setColor(action === 'added' ? 'GREEN' : 'RED')
     .setAuthor(`Reaction got ${action}`)
     .setTitle('Message Link')

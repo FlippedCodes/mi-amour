@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-syntax */
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 async function buildEmbed(config, roleData) {
-  const embed = new MessageEmbed();
+  const embed = new EmbedBuilder();
   await roleData.forEach(async (reaction) => {
     await embed.addField(reaction.name, reaction.emoji, true);
   });

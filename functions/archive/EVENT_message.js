@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports.run = async (client, message, config) => {
   // non command function: disboard boost
@@ -28,7 +28,7 @@ module.exports.run = async (client, message, config) => {
 
   // run cmd if existent
   if (cmd) {
-    cmd.run(client, message, args, config, MessageEmbed)
+    cmd.run(client, message, args, config, EmbedBuilder)
       .catch(console.log);
   }
 };

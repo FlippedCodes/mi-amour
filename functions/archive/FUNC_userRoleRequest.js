@@ -3,7 +3,7 @@ const errHander = (err) => { console.error('ERROR:', err); };
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(message, body, title) {
   const client = message.client;
-  client.functions.get('FUNC_MessageEmbedMessage')
+  client.functions.get('FUNC_EmbedBuilderMessage')
     .run(client.user, message.channel, body, title, 4296754, false)
     .then((msg) => msg.delete({ timeout: 10000 }));
 }
@@ -11,7 +11,7 @@ function messageSuccess(message, body, title) {
 // creates a embed messagetemplate for failed actions
 function messageFail(message, body, title) {
   const client = message.client;
-  client.functions.get('FUNC_MessageEmbedMessage')
+  client.functions.get('FUNC_EmbedBuilderMessage')
     .run(client.user, message.channel, body, title, 16449540, false)
     .then((msg) => msg.delete({ timeout: 10000 }));
 }

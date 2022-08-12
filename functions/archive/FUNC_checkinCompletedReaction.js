@@ -1,14 +1,14 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(client, channel, body) {
-  client.functions.get('FUNC_MessageEmbedMessage')
+  client.functions.get('FUNC_EmbedBuilderMessage')
     .run(client.user, channel, body, '', 4296754, false);
 }
 
 // creates a embed messagetemplate for failed actions
 async function messageFail(client, channel, body) {
-  const result = client.functions.get('FUNC_MessageEmbedMessage')
+  const result = client.functions.get('FUNC_EmbedBuilderMessage')
     .run(client.user, channel, body, '', 16449540, false);
   return result;
 }
@@ -44,7 +44,7 @@ module.exports.run = async (client, reaction, user, config) => {
       return;
 
     case '🔍':
-      client.functions.get('CMD_nsfw_search').run(client, reaction.message, [null, reaction.message.author.id], config, MessageEmbed, null);
+      client.functions.get('CMD_nsfw_search').run(client, reaction.message, [null, reaction.message.author.id], config, EmbedBuilder, null);
       return;
 
     case '❓':
@@ -53,7 +53,7 @@ module.exports.run = async (client, reaction, user, config) => {
 
     case '✅':
       messageSuccess(client, reaction.message.channel, 'DoB parsed successfully and nsfw entry got created');
-      client.functions.get('CMD_nsfw_search').run(client, reaction.message, [null, reaction.message.author.id], config, MessageEmbed, null);
+      client.functions.get('CMD_nsfw_search').run(client, reaction.message, [null, reaction.message.author.id], config, EmbedBuilder, null);
       return;
 
     default:

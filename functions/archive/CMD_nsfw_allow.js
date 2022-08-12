@@ -4,9 +4,9 @@ const userDoB = require('../database/models/UserDoB');
 
 const errHander = (err) => { console.error('ERROR:', err); };
 
-function sendMessage(MessageEmbed, channel, userTag, userID, age, DoB, allow, teammemberTag, config) {
+function sendMessage(EmbedBuilder, channel, userTag, userID, age, DoB, allow, teammemberTag, config) {
   // needs to be local as settings overlap from different embed-requests
-  const embed = new MessageEmbed();
+  const embed = new EmbedBuilder();
 
   let color = 16741376;
   if (allow) color = 4296754;
@@ -31,14 +31,14 @@ function sendMessage(MessageEmbed, channel, userTag, userID, age, DoB, allow, te
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(message, body) {
   const client = message.client;
-  client.functions.get('FUNC_MessageEmbedMessage')
+  client.functions.get('FUNC_EmbedBuilderMessage')
     .run(client.user, message.channel, body, '', 4296754, false);
 }
 
 // creates a embed messagetemplate for failed actions
 function messageFail(message, body) {
   const client = message.client;
-  client.functions.get('FUNC_MessageEmbedMessage')
+  client.functions.get('FUNC_EmbedBuilderMessage')
     .run(client.user, message.channel, body, '', 16449540, false)
     .then((msg) => msg.delete({ timeout: 10000 }));
 }
@@ -87,7 +87,7 @@ async function validate(client, message, prefix, subcmd, userID, allow) {
   return true;
 }
 
-module.exports.run = async (client, message, args, config, MessageEmbed, prefix) => {
+module.exports.run = async (client, message, args, config, EmbedBuilder, prefix) => {
   // split args
   const [subcmd, userID, allowInput] = args;
   const newAllow = allowInput.toLowerCase();
@@ -112,7 +112,7 @@ module.exports.run = async (client, message, args, config, MessageEmbed, prefix)
     // get user tags
     const [userTag, teammemberTag] = [userID, DBentry.teammemberID].map((uID) => client.users.cache.find(({ id }) => id === uID).tag);
     // send log and user confirmation
-    sendMessage(MessageEmbed, message.channel, userTag, userID, age, formatDoB, DBentry.allow, teammemberTag, config);
+    sendMessage(EmbedBuilder, message.channel, userTag, userID, age, formatDoB, DBentry.allow, teammemberTag, config);
   } else {
     messageFail(message, `\`${userID}\` doesn't exist in the DB.`);
   }

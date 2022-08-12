@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 const toTime = require('pretty-ms');
 
@@ -9,7 +9,7 @@ const OfflineStat = require('../../database/models/OfflineStat');
 module.exports.run = async () => {
   if (DEBUG) return;
   console.log(`[${module.exports.data.name}] Posting bot status message!`);
-  const embed = new MessageEmbed()
+  const embed = new EmbedBuilder()
     .setTitle('Nicashee - Command Instance - Bot back online!')
     .setColor(4296754)
     .setFooter({ text: `${client.user.tag}`, icon_url: `${client.user.displayAvatarURL}` })
