@@ -29,7 +29,7 @@ module.exports.run = async (reaction, user) => {
       config.checkin.checkinRoles.forEach((role) => reaction.message.member.roles.add(role));
       // post welcome message
       const welcomeChannel = member.guild.channels.cache.get(config.checkin.welcomeChannel);
-      welcomeChannel.send(`Welcome ${reaction.message.author}, you have been verified^^!\nPlease have a read of <#730609289504227403>!\nWe can’t wait to have fun with you here!`);
+      welcomeChannel.send(`${reaction.message.author}, you are checked-in now!\nYou can check out some roles in <#669278640667623434>!\nHave a great time on the server! :3`);
       await client.functions.get('ENGINE_checkin_transcriptChannel').run(reaction.message.channel);
       // delete channel
       await reaction.message.channel.delete();
@@ -37,7 +37,7 @@ module.exports.run = async (reaction, user) => {
 
     case '✋':
       // dm user
-      messageFail(reaction.message.author, 'It seems like your check-in got declined or you exceed your stay with not replying back.');
+      messageFail(client, reaction.message.author, 'It seems like your check-in got declined. Please get in touch with the team.');
       await client.functions.get('ENGINE_checkin_transcriptChannel').run(reaction.message.channel);
       // delete channel
       await reaction.message.channel.delete();

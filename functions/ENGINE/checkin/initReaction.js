@@ -1,13 +1,14 @@
 const welcomeMessage = (userID) => `
-Haiii <@!${userID}>! Welcome to Devoravore. <:nicshahappy:921955441066508350>
-Before we let you in I’m going to ask you some questions^^!
+Hey there <@!${userID}>! Welcome to TDM.
+Before we let you in im going to ask you some questions, before a staff member is going to let you in.
 
-1. Where did you get your invite?
-2. Are you interested in the vore and the furry/scalie communities?
-3. What is your Date of Birth? (Make sure your DoB is written in the DD/MM/YYYY format.)
-4. Have you read, and do you agree to, all of the <#730609289504227400>?
+:one: - How did you find our server?
+:two: - Are you on any other vore servers?
+:three: - Do you like vore and what is your favorite?
+:four: - What is your DoB date of birth? (Preferable in YYYY-MM-DD format)
+:five: - Please provide your ID as in <#496948681656893440> described.
 
-When you’ve answered these questions please ping the \`@Moderation\` role **once** and a staff member will be with you shortly to complete your verification.
+When you are done please ping/mention \`@Team\`, so we know that you are done and ready to be reviewd.
 `;
 
 // calculate user creation
