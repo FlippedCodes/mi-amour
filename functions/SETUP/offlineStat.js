@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 
-const toTime = require('pretty-ms');
+const moment = require('moment');
 
 const startupTime = +new Date();
 
@@ -10,15 +10,16 @@ module.exports.run = async () => {
   if (DEBUG) return;
   console.log(`[${module.exports.data.name}] Posting bot status message!`);
   const embed = new EmbedBuilder()
-    .setTitle('Nicashee - Command Instance - Bot back online!')
+    .setTitle('GurgleBot - Bot back online!')
     .setColor(4296754)
     .setFooter({ text: `${client.user.tag}`, icon_url: `${client.user.displayAvatarURL}` })
     .setTimestamp();
-  const offlineTime = await OfflineStat.findOne({ where: { ID: 1 } }).catch(ERR);
+  const offlineTime = await OfflineStat.findOne({ where: { ID: 2 } }).catch(ERR);
+  const timeStamp = moment(offlineTime.updatedAt).format('X');
   if (offlineTime) {
     embed
-      .addField('The time the bot went offline:', `${toTime(startupTime - offlineTime.time * 1)}`, false)
-      .addField('The bot went offline at:', `${new Date(offlineTime.time * 1)}`, false);
+      .addFields([{ name: 'The time the bot went offline:', value: `<t:${timeStamp}:R>`, inline: true }])
+      .addFields([{ name: 'The bot went offline at:', value: `<t:${timeStamp}:f>`, inline: true }]);
   } else {
     embed.setDescription('The time that the bot was offline, is missing. A new entry got created!');
   }
