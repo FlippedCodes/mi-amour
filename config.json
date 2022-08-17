@@ -57,7 +57,7 @@
                     "mature": false
                 },
                 {
-                    "name": "Bump Reminder (random pings to bump)",
+                    "name": "Bump Reminder (pings someone to bump)",
                     "roleID": "1007089661610573895",
                     "emoji": "🧡",
                     "mature": false
@@ -82,10 +82,10 @@
         "dateFormats": ["YYYY-MM-DD", "MM/DD/YYYY"],
         "logChannelID": "574178926985740288"
     },
-    "disboard": {
+    "disboardReminder": {
         "channelID": "782260178925387786",
         "userID": "302050872383242240",
-        "lastBoostedRoleID": "783082303478825001",
-        "successfulHex": "#24b7b7"
+        "successfulHex": "#24b7b7",
+        "reminderTime": 10800000
     }
 }
