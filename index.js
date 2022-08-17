@@ -73,16 +73,10 @@ client.on('ready', async () => {
   });
 });
 
-client.on('interactionCreate', async (interaction) => {
-  // command handler
-  if (interaction.isCommand()) {
-    const command = client.commands.get(interaction.commandName);
-    if (command) return command.run(interaction).catch(console.log);
-  }
-});
+client.on('interactionCreate', (interaction) => client.functions.get('EVENT_interactionCreate').run(interaction));
 
 client.on('messageCreate', (message) => {
-  client.functions.get('EVENT_message').run(message).catch(ERR);
+  client.functions.get('EVENT_messageCreate').run(message).catch(ERR);
 });
 
 client.on('guildMemberRemove', (member) => {
@@ -93,10 +87,14 @@ client.on('messageReactionAdd', (reaction, user) => {
   client.functions.get('EVENT_messageReactionAdd').run(reaction, user).catch(ERR);
 });
 
+client.on('messageReactionRemove', (reaction, user) => {
+  client.functions.get('EVENT_messageReactionRemove').run(client, reaction, user, config);
+});
+
 // trigger on reaction with raw package
 client.on('raw', async (packet) => {
   if (packet.t === 'MESSAGE_REACTION_ADD' && packet.d.guild_id) {
-    client.functions.get('ENGINE_checkin_initReaction').run(packet.d).catch(ERR);
+    client.functions.get('ENGINE_checkin_initReaction').run(packet.d);
   }
 });
 
