@@ -77,7 +77,7 @@
         "archiveChannel": "864936989400236072",
         "checkinRole": "345333709391659009"
     },
-    "aboutText": "./about.txt",
+    "aboutText": "./readme.md",
     "DoBchecking": {
         "dateFormats": ["YYYY-MM-DD", "MM/DD/YYYY"],
         "logChannelID": "574178926985740288"
