@@ -19,6 +19,7 @@ async function postReactions(message, roleData) {
 }
 
 module.exports.run = async () => {
+  if (DEBUG) return;
   const roleRequestID = config.setup.roleRequest.channelID;
   const roleRequest = await client.channels.fetch(roleRequestID);
   if (!roleRequest) {
