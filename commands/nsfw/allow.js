@@ -20,7 +20,7 @@ function sendMessage(EmbedBuilder, interaction, userTag, userID, age, DoB, allow
 
   const content = { embeds: [embed] };
   // send feedback
-  interaction.reply(content);
+  reply(interaction, content);
   // send in log
   interaction.guild.channels.cache.find(({ id }) => id === config.DoBchecking.logChannelID).send(content);
 }

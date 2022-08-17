@@ -23,7 +23,7 @@ function sendMessage(EmbedBuilder, interaction, userTag, userID, age, DoB, allow
     ]);
 
   // send message
-  interaction.reply({ embeds: [embed] });
+  reply(interaction, { embeds: [embed] });
 }
 
 module.exports.run = async (interaction, moment, EmbedBuilder) => {

@@ -5,7 +5,7 @@ async function kickoff(interaction) {
   const sendMessage = await new EmbedBuilder()
     .setDescription('📤 Pong...')
     .setColor();
-  const sentMessage = await interaction.reply({ embeds: [sendMessage], fetchReply: true });
+  const sentMessage = await reply(interaction, { embeds: [sendMessage], fetchReply: true });
   return sentMessage;
 }
 
