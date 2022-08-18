@@ -1,23 +1,21 @@
 const Path = require('path');
 
-const fs = require('fs');
-
 const files = [];
 
-function getFiles(Directory) {
+function getFiles(fs, Directory) {
   fs.readdirSync(Directory).forEach((File) => {
     const Absolute = Path.join(Directory, File);
-    if (fs.statSync(Absolute).isDirectory()) return getFiles(Absolute);
+    if (fs.statSync(Absolute).isDirectory()) return getFiles(fs, Absolute);
     files.push(Absolute);
   });
   return files;
 }
 
-module.exports.run = async () => {
+module.exports.run = async (fs) => {
   // create empty array to store command submittions
   const commandsSubmit = [];
   // get all command files
-  const files = await getFiles('./commands/');
+  const files = await getFiles(fs, './commands/');
   // only get file with '.js'
   const jsfiles = files.filter((f) => f.split('.').pop() === 'js');
   const cmdLength = jsfiles.length;
@@ -28,6 +26,8 @@ module.exports.run = async () => {
 
   // adding all commands
   await jsfiles.forEach((f, i) => {
+    // get module functions and info
+    const probs = require(`../../${f}`);
     // cleanup name
     const cleanName = f
       .replace(/\\|\//g, '_')
@@ -35,8 +35,6 @@ module.exports.run = async () => {
       .replace('.js', '');
     // abort entry if in disabled folder
     if (cleanName.search('archive_') !== -1) return;
-    // get module command and info
-    const probs = require(`../../${f}`);
     // announcing command loading
     if (DEBUG) console.log(`[${module.exports.data.name}]     ${i + 1}) Loaded: ${cleanName}!`);
     // adding command to collection
@@ -47,9 +45,10 @@ module.exports.run = async () => {
   const registerLength = commandsSubmit.length;
 
   await console.log(`[${module.exports.data.name}] Loaded ${cmdLength} command${cmdLength !== 1 ? 's' : ''}!`);
-  await console.log(`[${module.exports.data.name}] Registering ${registerLength} command${registerLength !== 1 ? 's' : ''}...`);
+  await console.log(`[${module.exports.data.name}] Registering ${registerLength} command${registerLength !== 1 ? 's' : ''}!`);
   // submit commands to discord api| Dev: one guild only, prod: globaly
-  await client.application.commands.set(commandsSubmit, config.guildId).catch(ERR);
+  // await client.application.commands.set(commandsSubmit, config.guildId).catch(ERR);
+  await client.application.commands.set(commandsSubmit, DEBUG ? process.env.devGuild : undefined).catch(ERR);
   console.log(`[${module.exports.data.name}] ${registerLength} command${registerLength !== 1 ? 's' : ''} registered!`);
 };
 
