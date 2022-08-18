@@ -7,11 +7,11 @@ services:
       - db_gb
     restart: always
     environment:
-      BotToken: ${DISCORD_BOT_TOKEN}
-      DBHost: db_gb
-      DBName: gurglebot
-      DB_user: gurglebot
-      DBPassw: ${DB_PASSWORD}
+      DCtoken: ${DISCORD_BOT_TOKEN}
+      DBhost: db_gb
+      DBdatabase: gurglebot
+      DBusername: gurglebot
+      DBpassword: ${DB_PASSWORD}
   db_gb:
     image: mariadb:latest
     restart: always
