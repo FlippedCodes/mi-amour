@@ -16,9 +16,10 @@ const intents = new IntentsBitField([
 // setting essential global values
 // init Discord client
 global.client = new Client({ disableEveryone: true, intents });
-global.config.package = require('./package.json');
+
 // init config
 global.config = require('./config.json');
+global.config.package = require('./package.json');
 
 global.DEBUG = process.env.NODE_ENV === 'development';
 
