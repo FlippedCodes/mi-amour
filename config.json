@@ -6,8 +6,10 @@
     "setup": {
         "logStatusChannel": "470889870160822273",
         "setupFunctions": [
-            "SETUP_roleRequest",
+            "SETUP_DBSync",
+            "SETUP_initCommands",
             "SETUP_offlineStat",
+            "SETUP_roleRequest",
             "SETUP_status"
         ],
         "roleRequest": {
