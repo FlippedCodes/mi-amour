@@ -11,7 +11,7 @@ module.exports.run = async (interaction) => {
   const checkinChannel = interaction.channel;
   const userID = checkinChannel.name;
   const user = await client.users.fetch(userID);
-  await user.send({embeds: [embed]});
+  await user.send({ embeds: [embed] });
 
   await client.functions.get('ENGINE_checkin_transcriptChannel').run(checkinChannel);
   // delete channel
