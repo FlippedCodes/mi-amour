@@ -25,7 +25,7 @@ module.exports.run = async (interaction) => {
 
   // prepare username and avatar
   const username = message.member.nickname;
-  const avatarURL = message.author.avatarURL({ format: 'png', dynamic: true, size: 512 });
+  const avatarURL = message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 512 });
 
   // prepare files with spoiler
   const files = message.attachments.map((file) => new AttachmentBuilder(file.url).setName(file.name).setSpoiler(true));
