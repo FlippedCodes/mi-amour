@@ -36,14 +36,25 @@ function modalPrep(messageID) {
 
 module.exports.run = async (message) => {
   // check message, if it follows the conten warning rules
-  if (!message.attachments.size) return;
-  const spoilerValidation = message.attachments
-    .map((attachment) => attachment.spoiler)
-    .every((e) => e);
+  let spoilerValidation = null;
+  if (message.attachments.size) {
+    spoilerValidation = message.attachments
+      .map((attachment) => attachment.spoiler)
+      .every((e) => e);
+  }
+  const urlRegEx = /http[s]?:\/\/(www\.)?(.*)?\/?(.)*/gm;
+  const urlMatch = message.content.match(urlRegEx);
+  if (urlMatch) {
+    const spoilerRegEx = /\|\|(.*?)http[s]?:\/\/(www\.)?(.*)?\/?(.)*/gm;
+    const matches = message.content.match(spoilerRegEx);
+    spoilerValidation = !!matches;
+  }
+  if (spoilerValidation === null) return;
+
   const stringValidation = !(config.contentWarning.cwStrings
     .map((searchString) => message.content.toLowerCase().search(searchString) === -1)
     .every((e) => e));
-  if (spoilerValidation && stringValidation) return;
+  if (stringValidation) return;
 
   // send message, informing user and providing options
   const bodyContent = `
@@ -76,8 +87,10 @@ module.exports.run = async (message) => {
     return;
   });
   buttonCollector.on('end', async (collected) => {
-    confirmMessage.delete();
-    if (collected.size === 0) message.delete();
+    if (collected.size === 0) {
+      confirmMessage.delete();
+      message.delete();
+    }
   });
 };
 
