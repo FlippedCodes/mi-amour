@@ -18,7 +18,7 @@ module.exports.run = async (interaction) => {
 
   const username = message.member.nickname;
   const avatarURL = message.author.avatarURL({ format: 'png', dynamic: true, size: 512 });
-  const files = message.attachments.map((file) => ({ attachment: file.url, name: `SPOILER_${file.name}` }));
+  const files = message.attachments.map((file) => new AttachmentBuilder(file.url).setName(file.name).setSpoiler(true));
 
   const channel = message.channel;
   const channelWebhooks = await channel.fetchWebhooks();
