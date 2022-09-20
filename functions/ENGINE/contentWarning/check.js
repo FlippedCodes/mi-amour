@@ -24,7 +24,7 @@ function modalPrep(messageID) {
         .setCustomId(`contentWarning_Text_${messageID}`)
         .setRequired(true)
         .setLabel('What can ben seen in the picture?')
-        .setPlaceholder('hard digestion, anal vore, watersports, ...')
+        .setPlaceholder('OV, anal vore, watersports, hard digestion,...')
         .setStyle(TextInputStyle.Short),
     ]);
   const modalCW = new ModalBuilder()
