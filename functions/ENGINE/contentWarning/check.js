@@ -47,8 +47,8 @@ module.exports.run = async (message) => {
 
   // send message, informing user and providing options
   const bodyContent = `
-  I noticed your message doesn't follow the content-warning rule of this channel.
-  Please choose one pill 💊 wisely:
+  I noticed your message doesn't follow the content-warning rules of this channel.
+  Please choose wisely 💊:
   - The blue pill will help you to autopost your message, but you won't be able to edit or delete it.
   - The red pill will destroy your message, and you have to repost it yourself.
   `;
