@@ -27,6 +27,8 @@ module.exports.run = async (interaction) => {
   hook.send({
     content, username, avatarURL, files,
   }).catch(ERR);
+
+  interaction.message.delete();
   message.delete();
 };
 

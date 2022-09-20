@@ -57,10 +57,6 @@ module.exports.run = async (message) => {
     .setDescription(bodyContent)
     .setFooter({ text: 'Please choose in the next 5 minutes, or your message will be deleted.' })
     .setColor('Orange');
-  // what has been chosen for the message
-  const messageOutcomeReply = (outcome) => new EmbedBuilder()
-    .setFooter({ text: `You chose to ${outcome} your message` })
-    .setColor('Green');
 
   const modal = modalPrep(message.id);
   // post user option message
@@ -71,11 +67,12 @@ module.exports.run = async (message) => {
   const filter = (i) => message.author.id === i.user.id;
   const buttonCollector = confirmMessage.createMessageComponentCollector({ filter, time: 300000 });
   buttonCollector.on('collect', async (used) => {
+    // cant stop, incase user aborts modal
     // buttonCollector.stop();
     if (used.customId === 'repost') return used.showModal(modal);
     // delete post
-    await confirmMessage.edit({ embeds: [messageOutcomeReply(used.customId)], components: [] });
-    await message.delete();
+    confirmMessage.delete();
+    message.delete();
     return;
   });
   buttonCollector.on('end', async (collected) => {
