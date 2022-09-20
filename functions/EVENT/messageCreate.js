@@ -7,8 +7,11 @@ module.exports.run = async (message) => {
   // TODO: foreach, with more roles
   // const staff = message.member.roles.cache.has(config.teamRole);
 
+  if (config.contentWarning.checkChannels.includes(message.channel.id)) return client.functions.get('ENGINE_contentWarning_check').run(message);
+
   // non command function: checkin complete questioning Reaction adding
-  client.functions.get('ENGINE_checkin_postReaction').run(message);
+  if (message.mentions.roles.has(config.teamRole)
+  && message.channel.parentId === config.checkin.categoryID) return client.functions.get('ENGINE_checkin_postReaction').run(message);
 };
 
 module.exports.data = {

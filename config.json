@@ -84,6 +84,16 @@
         "dateFormats": ["YYYY-MM-DD", "MM/DD/YYYY"],
         "logChannelID": "574178926985740288"
     },
+    "contentWarning": {
+        "cwStrings": ["cw", "content warning", "contentwarning", "warning", "content", "content-warning"],
+        "checkChannels": [
+            "496977334713319424",
+            "333647341661978637",
+            "496977729896448040",
+            "368470522662486016",
+            "1021758028367798385"
+        ]
+    },
     "disboardReminder": {
         "channelID": "782260178925387786",
         "userID": "302050872383242240",
