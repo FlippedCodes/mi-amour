@@ -53,6 +53,12 @@
                     "mature": true
                 },
                 {
+                    "name": "No DM",
+                    "roleID": "1021890475172573235",
+                    "emoji": "🚯",
+                    "mature": false
+                },
+                {
                     "name": "Notifications Role",
                     "roleID": "794658961076125726",
                     "emoji": "📬",
