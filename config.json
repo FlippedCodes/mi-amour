@@ -93,11 +93,8 @@
     "contentWarning": {
         "cwStrings": ["cw", "content warning", "contentwarning", "warning", "content", "content-warning"],
         "checkChannels": [
-            "496977334713319424",
             "333647341661978637",
-            "496977729896448040",
-            "368470522662486016",
-            "1021758028367798385"
+            "368470522662486016"
         ]
     },
     "disboardReminder": {
