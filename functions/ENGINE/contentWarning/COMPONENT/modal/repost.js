@@ -24,7 +24,7 @@ module.exports.run = async (interaction) => {
   const content = `**Content Warning: \`${userCW}\`**\n${urlMatch ? `||${message.content} ||` : message.content}`;
 
   // prepare username and avatar
-  const username = message.member.nickname;
+  const username = message.member.nickname || message.author.username;
   const avatarURL = message.member.displayAvatarURL({ format: 'png', dynamic: true, size: 512 });
 
   // prepare files with spoiler
