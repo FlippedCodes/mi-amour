@@ -35,6 +35,12 @@
                     "mature": false
                 },
                 {
+                    "name": "Unwilling",
+                    "roleID": "1043475597818613760",
+                    "emoji": "<:food_point:813908789991571516>",
+                    "mature": false
+                },
+                {
                     "name": "NSFW Access",
                     "roleID": "573614662445301772",
                     "emoji": "🔞",
