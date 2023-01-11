@@ -1,4 +1,4 @@
-# get node version 12
+# get node version 16
 FROM node:16.12-buster-slim
 
 # Create app directory
