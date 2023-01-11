@@ -1,5 +1,7 @@
 const { EmbedBuilder } = require('discord.js');
 
+// TODO: Add custom emoji support
+
 async function sendEmbed(channel, color, text, title) {
   const embed = new EmbedBuilder()
     .setColor(color)
