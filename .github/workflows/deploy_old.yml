@@ -1,3 +1,6 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
 name: Deploy
 
 on:
@@ -6,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: stardrive
+    runs-on: mainserverJulian
 
     env:
       DB_PORT: ${{ secrets.DB_PORT }}
@@ -18,10 +21,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Update 3rd party docker containers
-        run: docker compose pull
+        run: docker-compose pull
 
       - name: Build app
-        run: docker compose build
+        run: docker-compose build
 
       - name: Spin up containers
-        run: docker compose up -d db_gb
+        run: docker-compose up -d
