@@ -11,17 +11,18 @@ module.exports.run = async () => {
   console.log(`[${module.exports.data.name}] Posting bot status message!`);
   const embed = new EmbedBuilder()
     .setTitle('GurgleBot - Bot back online!')
-    .setColor(4296754)
-    .setFooter({ text: `${client.user.tag}`, icon_url: `${client.user.displayAvatarURL}` })
+    .setColor('Green')
+    .setFooter({ text: client.user.tag, icon_url: client.user.displayAvatarURL })
     .setTimestamp();
   const offlineTime = await OfflineStat.findOne({ where: { ID: 2 } }).catch(ERR);
-  const timeStamp = moment(offlineTime.updatedAt).format('X');
   if (offlineTime) {
-    embed
-      .addFields([{ name: 'The time the bot went offline:', value: `<t:${timeStamp}:R>`, inline: true }])
-      .addFields([{ name: 'The bot went offline at:', value: `<t:${timeStamp}:f>`, inline: true }]);
+    const timeStamp = moment(offlineTime.updatedAt);
+    embed.addFields([
+      { name: 'Heartbeat stopped at', value: `<t:${timeStamp.format('X')}:f>` },
+      { name: 'Time the bot was away', value: `${moment().diff(timeStamp, 'seconds', true)}s` },
+    ]);
   } else {
-    embed.setDescription('The time that the bot was offline, is missing. A new entry got created!');
+    embed.setDescription('I can\'t remember when i went offline. A new DB entry got created!');
   }
   client.channels.cache.get(config.setup.logStatusChannel).send({ embeds: [embed] });
 
