@@ -49,7 +49,7 @@ module.exports.run = async (message) => {
 
   // send message, informing user and providing options
   const bodyContent = `
-  Hey,... Hey you! did you know that if you use **${foundList[0].searched}** instead of **${foundList[0].replace}** discord will embed it better?
+  Hey,... Hey you! did you know that if you use **${foundList[0].replace}** instead of **${foundList[0].searched}**, Discord will embed it better?
   
   That way you don't have to post the image alongside your link :3
   If you want to, you allow me to re-post it for you, but then you can't delete the message anymore.
