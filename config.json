@@ -103,6 +103,32 @@
             "368470522662486016"
         ]
     },
+    "linkReplace": {
+        "checkChannels": [
+            "496979782567723030",
+            "496977304065409056",
+            "496977334713319424",
+            "333647341661978637",
+
+            "496977592558288906",
+            "496977729896448040",
+            "368470522662486016"
+        ],
+        "links": [
+            {
+                "search": "www.furaffinity.net",
+                "replace": "fxfuraffinity.net"
+            },
+            {
+                "search": "//furaffinity.net",
+                "replace": "//fxfuraffinity.net"
+            },
+            {
+                "search": "//twitter.com",
+                "replace": "//fxtwitter.com"
+            }
+        ]
+    },
     "disboardReminder": {
         "channelID": "782260178925387786",
         "userID": "302050872383242240",
