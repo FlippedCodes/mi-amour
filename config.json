@@ -41,12 +41,6 @@
                     "mature": false
                 },
                 {
-                    "name": "NSFW Access",
-                    "roleID": "573614662445301772",
-                    "emoji": "🔞",
-                    "mature": true
-                },
-                {
                     "name": "NSFL Access",
                     "roleID": "333646914757197824",
                     "emoji": "💩",
@@ -68,12 +62,6 @@
                     "name": "Notifications Role",
                     "roleID": "794658961076125726",
                     "emoji": "📬",
-                    "mature": false
-                },
-                {
-                    "name": "Bump Reminder (pings someone to bump)",
-                    "roleID": "1007089661610573895",
-                    "emoji": "🧡",
                     "mature": false
                 }
             ]
