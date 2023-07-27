@@ -122,5 +122,14 @@
         "userID": "302050872383242240",
         "successfulHex": "#24b7b7",
         "reminderTime": 10800000
+    },
+    "kingOfTheHill": {
+        "roleID": "783082303478825001",
+        "logChannelID": "1134236099116531884",
+        "whitelistChannelID": "1134237817334149190",
+        "timeout": {
+            "min": 600000,
+            "max": 7200000
+        }
     }
 }
