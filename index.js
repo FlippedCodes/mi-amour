@@ -71,21 +71,9 @@ client.on('ready', async () => {
 
 client.on('interactionCreate', (interaction) => client.functions.get('EVENT_interactionCreate').run(interaction));
 
-client.on('messageCreate', (message) => {
-  client.functions.get('EVENT_messageCreate').run(message).catch(ERR);
-});
+client.on('guildMemberAdd', (member) => client.functions.get('EVENT_guildMemberAdd').run(member).catch(ERR));
 
-client.on('guildMemberRemove', (member) => {
-  client.functions.get('EVENT_guildMemberRemove').run(member).catch(ERR);
-});
-
-client.on('messageReactionAdd', (reaction, user) => {
-  client.functions.get('EVENT_messageReactionAdd').run(reaction, user).catch(ERR);
-});
-
-client.on('messageReactionRemove', (reaction, user) => {
-  client.functions.get('EVENT_messageReactionRemove').run(client, reaction, user, config);
-});
+client.on('messageCreate', (message) => client.functions.get('EVENT_messageCreate').run(message).catch(ERR));
 
 // trigger on reaction with raw package
 client.on('raw', async (packet) => {

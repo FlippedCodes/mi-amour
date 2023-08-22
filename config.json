@@ -4,103 +4,42 @@
     "teamRole": "300661482830561281",
     "ownerRole": "300654913061388288",
     "setup": {
-        "logStatusChannel": "470889870160822273",
+        "logStatusChannel": "1143657641667727512",
         "setupFunctions": [
-            "SETUP_DBSync",
             "SETUP_initCommands",
             "SETUP_offlineStat",
-            "SETUP_roleRequest",
             "SETUP_status"
-        ],
-        "roleRequest": {
-            "channelID": "669278640667623434",
-            "unique": ["300980508899278848", "300980566386540544", "300980426548445186"],
-            "roles": [
-                {
-                    "name": "Prey",
-                    "roleID": "300980508899278848",
-                    "emoji": "🐭",
-                    "mature": false
-                },
-                {
-                    "name": "Prey/Pred",
-                    "roleID": "300980566386540544",
-                    "emoji": "🔄",
-                    "mature": false
-                },
-                {
-                    "name": "Pred",
-                    "roleID": "300980426548445186",
-                    "emoji": "🐉",
-                    "mature": false
-                },
-                {
-                    "name": "Unwilling",
-                    "roleID": "1043475597818613760",
-                    "emoji": "😖",
-                    "mature": false
-                },
-                {
-                    "name": "NSFL Access",
-                    "roleID": "333646914757197824",
-                    "emoji": "💩",
-                    "mature": true
-                },
-                {
-                    "name": "Vent Access",
-                    "roleID": "615218706657574952",
-                    "emoji": "💨",
-                    "mature": true
-                },
-                {
-                    "name": "No DM",
-                    "roleID": "1021890475172573235",
-                    "emoji": "🚯",
-                    "mature": false
-                },
-                {
-                    "name": "Notifications Role",
-                    "roleID": "794658961076125726",
-                    "emoji": "📬",
-                    "mature": false
-                }
-            ]
-        }
+        ]
     },
     "reactionLoggingChannel": "496959577041010692",
     "checkin": {
         "reaction": {
-            "channel": "496948681656893440",
-            "message": "496985167160672267",
+            "channel": "1140788960797396992",
+            "message": "1143653053266935948",
             "emoji": "👌"
         },
-        "categoryID": "750432209420156968",
-        "welcomeChannel": "496962434917990410",
-        "archiveChannel": "864936989400236072",
-        "checkinRole": "345333709391659009"
+        "welcomeChannel": "1141822426636881960",
+        "checkinRole": "345333709391659009",
+        "removeRole": "1143305238477033575"
     },
     "aboutText": "./readme.md",
-    "DoBchecking": {
-        "dateFormats": ["YYYY-MM-DD", "MM/DD/YYYY"],
-        "logChannelID": "574178926985740288"
-    },
     "contentWarning": {
         "cwStrings": ["cw", "content warning", "contentwarning", "warning", "content", "content-warning"],
         "checkChannels": [
-            "333647341661978637",
-            "368470522662486016"
+            "1141834642660528168",
+            "1141834812143972372"
         ]
     },
     "linkReplace": {
         "checkChannels": [
-            "496979782567723030",
-            "496977304065409056",
-            "496977334713319424",
-            "333647341661978637",
+            "1141822426636881960",
+            "1141822500792193054",
 
-            "496977592558288906",
-            "496977729896448040",
-            "368470522662486016"
+            "1141832729902723123",
+            "1141832288590626897",
+
+            "1141834642660528168",
+            "1141834812143972372"
         ],
         "links": [
             {
@@ -116,22 +55,5 @@
                 "replace": "//vxtwitter.com"
             }
         ]
-    },
-    "disboardReminder": {
-        "channelID": "782260178925387786",
-        "userID": "302050872383242240",
-        "successfulHex": "#24b7b7",
-        "reminderTime": 10800000
-    },
-    "kingOfTheHill": {
-        "roleID": "783082303478825001",
-        "logChannelID": "1134236099116531884",
-        "whitelistChannelID": "1134237817334149190",
-        "timeout": {
-            "min": 120000,
-            "minOrg": 120000,
-            "max": 600000,
-            "maxOrg": 600000
-        }
     }
 }

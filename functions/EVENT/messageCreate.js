@@ -3,17 +3,9 @@ module.exports.run = async (message) => {
   if (message.author.bot) return;
   if (message.channel.type === 'dm') return;
 
-  // checking if staffmember
-  // TODO: foreach, with more roles
-  // const staff = message.member.roles.cache.has(config.teamRole);
-
   if (config.contentWarning.checkChannels.includes(message.channel.id)) return client.functions.get('ENGINE_contentWarning_check').run(message);
 
   if (config.linkReplace.checkChannels.includes(message.channel.id)) return client.functions.get('ENGINE_linkReplace_check').run(message);
-
-  // non command function: checkin complete questioning Reaction adding
-  if (message.mentions.roles.has(config.teamRole)
-  && message.channel.parentId === config.checkin.categoryID) return client.functions.get('ENGINE_checkin_postReaction').run(message);
 };
 
 module.exports.data = {
