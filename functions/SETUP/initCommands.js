@@ -14,7 +14,7 @@ function getFiles(Directory) {
 }
 
 module.exports.run = async () => {
-  // create empty array to store command submittions
+  // create empty array to store command submissions
   const commandsSubmit = [];
   // get all command files
   const files = await getFiles('./commands/');
