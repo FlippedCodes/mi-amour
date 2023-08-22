@@ -1,7 +1,7 @@
 {
   "name": "mi-amour",
   "version": "1.0.0",
-  "description": "Modified copy of Gurglebot for the TDM(/VPP)-Network.",
+  "description": "Stripped version of Gurglebot for the TDM(/VPP)-Network.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
