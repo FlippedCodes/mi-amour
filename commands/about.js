@@ -19,4 +19,5 @@ module.exports.run = async (interaction) => {
 
 module.exports.data = new CmdBuilder()
   .setName('about')
-  .setDescription('Learn more about me!');
+  .setDescription('Learn more about me!')
+  .setDMPermission(false);

@@ -13,4 +13,5 @@ module.exports.run = async (interaction) => {
 module.exports.data = new CmdBuilder()
   .setName('say')
   .setDescription('I\'ll speak your message!')
+  .setDMPermission(false)
   .addStringOption((option) => option.setName('message').setDescription('Tell me what to say.').setRequired(true));

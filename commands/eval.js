@@ -28,4 +28,6 @@ module.exports.run = async (interaction) => {
 module.exports.data = new CmdBuilder()
   .setName('eval')
   .setDescription('Command used to run snippets of code. [OWNER ONLY].')
-  .addStringOption((option) => option.setName('codeline').setDescription('Commandline to execute').setRequired(true));
+  .setDMPermission(false)
+  .addStringOption((option) => option.setName('codeline')
+    .setDescription('Commandline to execute').setRequired(true));
