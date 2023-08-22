@@ -9,6 +9,7 @@ jobs:
     runs-on: stardrive
 
     env:
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
 
     steps:

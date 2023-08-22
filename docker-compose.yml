@@ -8,6 +8,10 @@ services:
     restart: always
     environment:
       DCtoken: ${DISCORD_BOT_TOKEN}
+      DBdatabase: gurglebot
+      DBhost: gurglebot-db_gb-1
+      DBusername: gurglebot
+      DBpassword: ${DB_PASSWORD}
 
 networks:
   default:
