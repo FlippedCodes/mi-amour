@@ -15,13 +15,19 @@
     "checkin": {
         "reaction": {
             "channel": "1140788960797396992",
-            "message": "1143653053266935948",
+            "message": "1144003787456008413",
             "emoji": "👌"
         },
         "welcomeChannel": "1141822426636881960",
         "checkinRole": "345333709391659009",
-        "removeRole": "1143305238477033575"
+        "hideOpenChannels": "1143305238477033575",
+        "declineFallbackChannel": "1140788960797396992",
+        "parentServer": {
+            "serverID": "300051375914483715",
+            "roleID": "300661482830561281"
+        }
     },
+    "openChannelCategory": "1143303038090612898",
     "aboutText": "./readme.md",
     "contentWarning": {
         "cwStrings": ["cw", "content warning", "contentwarning", "warning", "content", "content-warning"],
