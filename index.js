@@ -1,5 +1,7 @@
 // init Discord
-const { Client, IntentsBitField, Collection } = require('discord.js');
+const {
+  Client, IntentsBitField, Collection, Partials,
+} = require('discord.js');
 // init file system
 const fs = require('fs');
 // init command builder
@@ -13,9 +15,12 @@ const intents = new IntentsBitField([
   IntentsBitField.Flags.GuildMembers,
   IntentsBitField.Flags.MessageContent,
 ]);
+const partials = [
+  Partials.Reaction,
+];
 // setting essential global values
 // init Discord client
-global.client = new Client({ disableEveryone: true, intents });
+global.client = new Client({ disableEveryone: true, intents, partials });
 
 // init config
 global.config = require('./config.json');
@@ -75,12 +80,14 @@ client.on('guildMemberAdd', (member) => client.functions.get('EVENT_guildMemberA
 
 client.on('messageCreate', (message) => client.functions.get('EVENT_messageCreate').run(message).catch(ERR));
 
+client.on('messageReactionAdd', (messageReaction, user) => client.functions.get('EVENT_messageReactionAdd').run(messageReaction, user).catch(ERR));
+
 // trigger on reaction with raw package
-client.on('raw', async (packet) => {
-  if (packet.t === 'MESSAGE_REACTION_ADD' && packet.d.guild_id) {
-    client.functions.get('ENGINE_checkin_initReaction').run(packet.d);
-  }
-});
+// client.on('raw', async (packet) => {
+//   if (packet.t === 'MESSAGE_REACTION_ADD' && packet.d.guild_id) {
+//     client.functions.get('EVENT_messageReactionAdd').run(packet.d);
+//   }
+// });
 
 // logging errors and warns
 client.on('error', (e) => console.error(e));
