@@ -15,5 +15,5 @@ services:
 
 networks:
   default:
-    external:
-      name: tdmnet
+    name: tdmnet
+    external: true
