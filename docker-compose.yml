@@ -3,8 +3,6 @@ services:
   bot_ma:
     build:
       context: ./
-    depends_on:
-      - db_gb
     restart: always
     environment:
       DCtoken: ${DISCORD_BOT_TOKEN}
