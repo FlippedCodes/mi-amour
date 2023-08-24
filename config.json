@@ -19,12 +19,12 @@
             "emoji": "👌"
         },
         "welcomeChannel": "1141822426636881960",
-        "checkinRole": "345333709391659009",
+        "checkinRole": "1140767977399124048",
         "hideOpenChannels": "1143305238477033575",
         "declineFallbackChannel": "1140788960797396992",
         "parentServer": {
             "serverID": "300051375914483715",
-            "roleID": "300661482830561281"
+            "roleID": "345333709391659009"
         }
     },
     "openChannelCategory": "1143303038090612898",
