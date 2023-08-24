@@ -1,7 +1,9 @@
-module.exports.run = async (member) => {
-  if (member.guild.id !== config.guildId) return;
+module.exports.run = async (messageReaction, user) => {
+  if (messageReaction.message.guild.id !== config.guildId) return;
 
-  client.functions.get('ENGINE_checkin_oAuthParentServer').run(member);
+  messageReaction.users.remove(user);
+
+  client.functions.get('ENGINE_checkin_oAuthParentServer').run(await messageReaction.message.guild.members.fetch(user.id));
 };
 
 module.exports.data = {
