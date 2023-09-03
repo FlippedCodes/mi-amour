@@ -40,7 +40,7 @@ global.ERR = (err) => {
     .setAuthor({ name: `Error: '${err.message}'` })
     .setDescription(`STACKTRACE:\n\`\`\`${err.stack.slice(0, 4000)}\`\`\``)
     .setColor(16449540);
-  client.channels.cache.get(config.setup.logStatusChannel).send({ embeds: [embed] });
+  client.channels.fetch(config.setup.logStatusChannel).then((channel) => channel.send({ embeds: [embed] }));
   return;
 };
 
