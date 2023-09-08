@@ -12,10 +12,10 @@ function prepareFields(orgText) {
     // get rid of empty lines
     if (line === '') return;
     const split = line.split(': ');
+    // get rid of pesky cdn links
+    if (split[0].includes('cdn.discordapp.com')) return;
     // return if there is no colon and therefor normal description
     if (!split[1]) return description += `${split[0]}\n\n`;
-    // get rid of pesky cdn links
-    if (split[1].includes('cdn.discordapp.com')) return;
     // add to description if value is too long
     if (split[1].length >= 250) return description += `**${split[0]}:** ${split[1]}\n\n`;
     args.push({ name: split[0], value: split[1], inline: true });
