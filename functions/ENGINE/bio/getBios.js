@@ -16,6 +16,8 @@ function prepareFields(orgText) {
     if (split[0].includes('cdn.discordapp.com')) return;
     // return if there is no colon and therefor normal description
     if (!split[1]) return description += `${split[0]}\n\n`;
+    // max of 25 fields
+    if (args.length > 25) return description += `**${split[0]}:** ${split[1]}\n\n`;
     // add to description if value is too long
     if (split[1].length >= 250) return description += `**${split[0]}:** ${split[1]}\n\n`;
     args.push({ name: split[0], value: split[1], inline: true });
