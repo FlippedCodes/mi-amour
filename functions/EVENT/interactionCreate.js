@@ -5,6 +5,7 @@ module.exports.run = async (interaction) => {
   if (interaction.guild.id !== config.guildId) return;
 
   // command handler
+  if (interaction.isAutocomplete()) return client.functions.get('EVENT_interaction_isAutocomplete').run(interaction).catch(ERR);
   if (interaction.isCommand()) return client.functions.get('EVENT_interaction_isCommand').run(interaction).catch(ERR);
   if (interaction.isButton()) return client.functions.get('EVENT_interaction_isButton').run(interaction).catch(ERR);
   if (interaction.isModalSubmit()) return client.functions.get('EVENT_interaction_isModalSubmit').run(interaction).catch(ERR);
