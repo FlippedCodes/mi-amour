@@ -28,7 +28,7 @@ module.exports.run = async (interaction) => {
 ${allowedBios.map((bio) => `- [${bio.name}](${bio.link})`).join('\n')}
 
 Select a bio below to see its details. (This will display images about the bio.)
-${!allowedAll ? 'Because you don\'t have the NSFW and/or NSFL role, the list is incomplete!' : ''}`;
+${!allowedAll ? '**Because you don\'t have the NSFW and/or NSFL role, the list is incomplete!**' : ''}`;
 
   const message = new EmbedBuilder().setDescription(body).setColor('Blue').setThumbnail(PFP);
   const menuComp = menu(allowedBios);

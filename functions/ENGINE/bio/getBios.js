@@ -1,7 +1,8 @@
 const { PermissionsBitField } = require('discord.js');
 
 // cache system was implemented cause i don't know if discord.js caches properly. and it was still pretty slow
-let cache = [];
+// DISABLED: because we don't have multiple commands anymore. it was also not working with multi-user usage, locking the output for another member, that actually had access to the channels
+// let cache = [];
 
 function prepareFields(orgText) {
   const lines = orgText.split('\n');
@@ -21,8 +22,8 @@ function prepareFields(orgText) {
 }
 
 module.exports.run = async (interaction, member) => {
-  const cachedEntry = cache.find((entry) => entry.id === member.id);
-  if (cachedEntry) return cachedEntry.bios;
+  // const cachedEntry = cache.find((entry) => entry.id === member.id);
+  // if (cachedEntry) return cachedEntry.bios;
 
   const bioRawCollections = await Promise.all(
     config.bio.bioChannels.map(async (channelID) => {
@@ -66,10 +67,10 @@ module.exports.run = async (interaction, member) => {
 
   const biosFinal = bios.filter((bio) => bio.name);
 
-  cache.push({ id: member.id, bios: biosFinal });
-  setTimeout(() => {
-    cache = cache.filter((entry) => entry.id !== member.id);
-  }, 1.8e+6); // 30 mins
+  // cache.push({ id: member.id, bios: biosFinal });
+  // setTimeout(() => {
+  //   cache = cache.filter((entry) => entry.id !== member.id);
+  // }, 1.8e+6); // 30 mins
 
   return biosFinal;
 };
