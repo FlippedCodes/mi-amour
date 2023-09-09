@@ -7,7 +7,7 @@ async function searchUser(ID) {
 
 async function checkinFail(user, fallbackChannel) {
   const body = `
-  You don't seem to be in [The Dragons Maw](https://discord.gg/Jy4ZuCc), make sure to join it and check in there first, before trying again.
+  You don't seem to be in [The Dragons Maw](https://discord.gg/Jy4ZuCc). Make sure to join it and verify there first, before trying again.
   This is because Vorarephilia~Pride is a sub-server of [TDM](https://discord.gg/Jy4ZuCc).
   `;
   const send = client.functions.get('ENGINE_message_embed');
