@@ -54,7 +54,7 @@ module.exports.run = async (message) => {
   const stringValidation = !(config.contentWarning.cwStrings
     .map((searchString) => message.content.toLowerCase().search(searchString) === -1)
     .every((e) => e));
-  if (stringValidation) return;
+  if (stringValidation && spoilerValidation) return;
 
   // send message, informing user and providing options
   const bodyContent = `
