@@ -1,7 +1,7 @@
 const userDoB = require('../../../database/models/UserDoB');
 
 async function searchUser(ID) {
-  const result = await userDoB.findOne({ where: { ID } }).catch(ERR);
+  const result = await userDoB.findOne({ where: { ID, allow: true } }).catch(ERR);
   return result;
 }
 
