@@ -1,6 +1,6 @@
 module.exports.run = async (interaction) => {
   // only guild command
-  if (!await interaction.inGuild()) return messageFail(interaction, uwu('The bot is for server-use only.'));
+  if (!await interaction.inGuild()) return messageFail(interaction, 'The bot is for server-use only.');
 
   if (interaction.guild.id !== config.guildId) return;
 
