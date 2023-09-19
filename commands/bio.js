@@ -16,7 +16,7 @@ const menu = (bioList) => new ActionRowBuilder()
 
 module.exports.run = async (interaction) => {
   const member = interaction.options.getMentionable('user', true);
-  const PFP = await member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }) 
+  const PFP = await member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 });
 
   const bios = await client.functions.get('ENGINE_bio_getBios').run(interaction, member);
   if (!bios.length) return messageFail(interaction, `${member} doesn't have any.`);
