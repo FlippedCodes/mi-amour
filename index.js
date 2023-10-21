@@ -79,7 +79,7 @@ client.on('interactionCreate', (interaction) => client.functions.get('EVENT_inte
 
 client.on('guildMemberAdd', (member) => client.functions.get('EVENT_guildMemberAdd').run(member).catch(ERR));
 
-// TODO: Kick person from sub server if they leave TDM
+client.on('guildMemberRemove', (member) => client.functions.get('EVENT_guildMemberRemove').run(member).catch(ERR));
 
 client.on('messageCreate', (message) => client.functions.get('EVENT_messageCreate').run(message).catch(ERR));
 
