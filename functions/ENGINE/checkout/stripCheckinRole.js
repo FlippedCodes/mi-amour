@@ -13,8 +13,10 @@ async function checkinFail(user, fallbackChannel) {
   send.run(user, body, null, 'Red')
     // if DM sending is disabled, send scheduled deletion message in role channel
     .catch(async () => {
+      const sendPing = await fallbackChannel.send({ content: `${user}`, fetchReply: true });
       const sendMessage = await send.run(fallbackChannel, body, null, 'Red', null, true).catch(ERR);
       setTimeout(() => {
+        sendPing.delete();
         sendMessage.delete();
       }, 10000);
     });
