@@ -29,7 +29,7 @@ module.exports.run = async (member) => {
   const user = member.user;
   // check if member is on parentServer
   const parentServer = await client.guilds.fetch(config.checkin.parentServer.serverID).catch(() => null);
-  if (!parentServer) return console.error('Bot not in parent server or server is currently offline!');
+  if (!parentServer) return ERR(`Bot not in parent server or server is currently offline! Could not add user ${memberLeftServer.id}`);
   const parentMember = await parentServer.members.fetch(member.id).catch(() => null);
   if (!parentMember) return checkinFail(user, fallbackChannel);
   // check for role
