@@ -33,7 +33,7 @@ module.exports.run = async (memberLeftServer) => {
   // kick out message
   await checkinFail(user, fallbackChannel);
   // remove all roles
-  await subMember.roles.remove(subMember.roles).catch(ERR);
+  await subMember.roles.remove(subMember.roles.cache).catch(ERR);
   // hide open channels that are required by discord role request system
   await subMember.roles.add(config.checkin.hideOpenChannels);
 };
