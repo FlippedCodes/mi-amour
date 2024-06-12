@@ -1,10 +1,3 @@
-const userDoB = require('../../../database/models/UserDoB');
-
-async function searchUser(ID) {
-  const result = await userDoB.findOne({ where: { ID, allow: true } }).catch(ERR);
-  return result;
-}
-
 async function checkinFail(user, fallbackChannel) {
   const body = `
   It seems that you have left [The Dragons Maw](https://discord.gg/Jy4ZuCc). You have to be part of that server to continue using Vorarephilia~Pride!
